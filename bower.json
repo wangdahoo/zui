@@ -1,0 +1,19 @@
+{
+  "name": "zui",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wangdahoo/zui",
+  "authors": [
+    "157195705@qq.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
