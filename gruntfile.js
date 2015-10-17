@@ -3,23 +3,6 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        jst: {
-            tpl: {
-                options: {
-                    amd: true,
-                    processName: function(name) {
-                        return name.replace('src/tpl/', '').replace('.html', '');
-                    },
-                    processContent: function(src) {
-                        return src.replace(/(^\s+|\s+$|\n)/gm, '');
-                    }
-                },
-                files: {
-                    'src/js/render/templates.js': ['src/tpl/*.html']
-                }
-            }
-        },
-
         sass: {
             scss: {
                 files: [{
@@ -32,11 +15,32 @@ module.exports = function(grunt) {
             }
         },
 
-        watch: {
-            jst: {
-                files: 'src/tpl/*.html',
-                tasks: ['jst']
+        sassFormat: {
+            options: {
+                //indentChar: '\t',
+                //indentStep: 1,
+
+                indentChar: ' ',
+                indentStep: 4,
+                indent: true,
+                blankLine: {
+                    property: true,
+                    close: true
+                },
+                whiteSpace: {
+                    selector: true,
+                    property: true
+                },
+                order: true,
+                lang: 'en',
+                debug: false
             },
+            files: {
+                src: ['src/scss/*.scss']
+            }
+        },
+
+        watch: {
             sass: {
                 files: 'src/scss/*.scss',
                 tasks: ['sass']
@@ -44,8 +48,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jst');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-sass-format');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['watch']);
