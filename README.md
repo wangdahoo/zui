@@ -1,18 +1,20 @@
 # zui
 
+A UI Framework for H5 Single Page App
+
 ### UI
 
-- Page ----------------------------------------> done
-- Transition ----------------------------------> done
-- Nav -----------------------------------------> done
-- Button --------------------------------------> done
-- Icon ----------------------------------------> done
-- List ----------------------------------------> todo
-- Grid ----------------------------------------> todo
-- Article -------------------------------------> todo
-- Toast ---------------------------------------> todo
-- Dialog --------------------------------------> todo
+- Page
+- Transition
+- Nav
+- Button
+- Icon
+- List
+- Grid
+- Article
+- Toast
+- Dialog
 
-### Framework
+### App Foundation
 
 - TBD
