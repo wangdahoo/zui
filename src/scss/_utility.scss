@@ -1,0 +1,21 @@
+@import "_variable";
+
+.no-padding {
+  padding: 0!important;
+}
+
+.assertive {
+  color: $assertive;
+}
+
+.positive {
+  color: $positive;
+}
+
+.balanced {
+  color: $balanced;
+}
+
+.grey {
+  color: #ddd;
+}

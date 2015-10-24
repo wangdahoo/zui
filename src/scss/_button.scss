@@ -1,1 +1,57 @@
+@import "_base";
+@import "mixins/_button";
+
+.ui-btn {
+  display: inline-block;
+  margin-bottom: 0; // For input.ui-btn
+  font-weight: $btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  white-space: nowrap;
+  @include button-size($padding-base-vertical, $padding-base-horizontal, $btn-font-size-base, $btn-line-height-base, $btn-border-radius-base);
+  @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+
+  &.ui-btn-assertive {
+    @include button-variant($btn-assertive-color, $btn-assertive-bg, $btn-assertive-border);
+  }
+
+  &.ui-btn-positive {
+    @include button-variant($btn-positive-color, $btn-positive-bg, $btn-positive-border);
+  }
+
+  &.ui-btn-balanced {
+    @include button-variant($btn-balanced-color, $btn-balanced-bg, $btn-balanced-border);
+  }
+
+  /* 定制button高度 */
+  // height: 50px;
+
+}
+
+.ui-btn-block {
+  display: block;
+  width: 100%;
+}
+
+.ui-btn-block + .ui-btn-block {
+  margin-top: 10px;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.ui-btn-block {
+    width: 100%;
+  }
+}
+
+.ui-btn-link {
+  font-size: $btn-font-size-base;
+  line-height: $btn-font-size-base;
+  background: none;
+}
 

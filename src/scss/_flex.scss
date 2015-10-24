@@ -1,0 +1,241 @@
+// Name:            Flex
+// Description:     Defines styles to create layouts with flexbox
+//
+// Component:       `ui-flex-*`
+//
+// Used by:         Caption
+//
+//
+// ========================================================================
+
+
+/* ========================================================================
+   Component: Flex
+ ========================================================================== */
+
+.ui-flex {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.ui-flex-inline {
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+}
+
+/*
+ * Fixes initial flex-shrink value in IE10
+ */
+
+.ui-flex > *,
+.ui-flex-inline > * { -ms-flex-negative: 1; }
+
+
+/* Alignment
+ ========================================================================== */
+
+/*
+ * Vertical alignment
+ * Default value is `stretch`
+ */
+
+// .ui-flex-stretch { align-items: stretch; }
+
+.ui-flex-top {
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+}
+
+.ui-flex-middle {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.ui-flex-bottom {
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+
+/*
+ * Horizontal alignment
+ * Default value is `flex-start`
+ */
+
+// .ui-flex-left { justify-content: flex-start; }
+
+.ui-flex-center {
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.ui-flex-right {
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+.ui-flex-space-between {
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.ui-flex-space-around {
+    -ms-flex-pack: distribute;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+
+/* Direction
+ ========================================================================== */
+
+// .ui-flex-row { flex-direction: row; }
+
+.ui-flex-row-reverse {
+    -ms-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.ui-flex-column {
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.ui-flex-column-reverse {
+    -ms-flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+}
+
+
+/* Wrap
+ ========================================================================== */
+
+// Default
+.ui-flex-nowrap {
+    -ms-flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+.ui-flex-wrap {
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.ui-flex-wrap-reverse {
+    -ms-flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+}
+
+/*
+ * Horizontal alignment
+ * Default value is `stretch`
+ */
+
+// .ui-flex-wrap-stretch { align-content: stretch; }
+
+.ui-flex-wrap-top {
+    -ms-flex-line-pack: start;
+    -webkit-align-content: flex-start;
+    align-content: flex-start;
+}
+
+.ui-flex-wrap-middle {
+    -ms-flex-line-pack: center;
+    -webkit-align-content: center;
+    align-content: center;
+}
+
+.ui-flex-wrap-bottom {
+    -ms-flex-line-pack: end;
+    -webkit-align-content: flex-end;
+    align-content: flex-end;
+}
+
+.ui-flex-wrap-space-between {
+    -ms-flex-line-pack: justify;
+    -webkit-align-content: space-between;
+    align-content: space-between;
+}
+
+.ui-flex-wrap-space-around {
+    -ms-flex-line-pack: distribute;
+    -webkit-align-content: space-around;
+    align-content: space-around;
+}
+
+
+/* Item ordering
+ ========================================================================== */
+
+/*
+ * Default is 0
+ */
+
+.ui-flex-order-first {
+    -ms-flex-order: -1;
+    -webkit-order: -1;
+    order: -1;
+}
+
+.ui-flex-order-last {
+    -ms-flex-order: 99;
+    -webkit-order: 99;
+    order: 99;
+}
+
+/* Item dimensions
+ ========================================================================== */
+
+/*
+ * Initial: 0 1 auto
+ * Content dimensions, but shrinks
+ */
+
+/*
+ * No Flex: 0 0 auto
+ * Content dimensions
+ */
+
+.ui-flex-item-none {
+    -ms-flex: none;
+    -webkit-flex: none;
+    flex: none;
+}
+
+/*
+ * Relative Flex: 1 1 auto
+ * Space is allocated considering content
+ * 1. Fixes flex-shrink value in IE10
+ */
+
+.ui-flex-item-auto {
+    -ms-flex: auto;
+    -webkit-flex: auto;
+    flex: auto;
+    /* 1 */
+    -ms-flex-negative: 1;
+}
+
+/*
+ * Absolute Flex: 1 1 0%
+ * Space is allocated solely based on flex
+ */
+
+.ui-flex-item-1 {
+    -ms-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}

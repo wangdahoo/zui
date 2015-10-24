@@ -1,0 +1,15 @@
+@import "_base";
+
+.ui-page {
+  width: 100%;
+  height: 100%;
+  padding: $page-default-padding + $nav-default-height $page-default-padding $page-default-padding $page-default-padding;
+  background-color: $page-default-bg;
+
+  &.full-screen {
+    padding: $page-default-padding;
+  }
+
+}
+
+

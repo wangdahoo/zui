@@ -1,1 +1,45 @@
+@import "_base";
+@import "mixins/_button";
 
+.ui-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  height: $nav-default-height;
+  background-color: $nav-default-bg;
+
+  .ui-nav-title, .title {
+    margin: 0 60px;
+    text-align: center;
+    font-size: $nav-default-title-font-size;
+    line-height: $nav-default-height;
+    color: $nav-default-color;
+  }
+
+  .ui-btn {
+    color: $nav-default-color;
+    background: none;
+    border: none;
+    width: 60px;
+    height: $nav-default-height;
+    line-height: $nav-default-height;
+    font-size: 16px;
+    font-weight: 300;
+    padding: 0 15px;
+
+    @include button-variant($nav-default-color, $nav-default-bg, $nav-default-bg);
+
+    &:nth-of-type(1) {
+      float: left;
+      text-align: left;
+    }
+
+    &:nth-of-type(2) {
+      float: right;
+      text-align: left;
+    }
+  }
+
+}

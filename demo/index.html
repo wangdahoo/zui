@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>Z</title>
+    <link rel="stylesheet" href="../src/css/zui.css"/>
+    <link rel="stylesheet" href="site.css"/>
+</head>
+<body>
+
+<!-- lib -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/underscore/underscore-min.js"></script>
+<script src="../bower_components/backbone/backbone-min.js"></script>
+
+<!-- templates -->
+<script type="text/template" id="tpl-home">
+    <div class="ui-nav">
+        <div class="title">Z</div>
+    </div>
+    <div class="ui-page" id="home">
+        <% _.each(pages, function(p, i) { %>
+        <button class="ui-btn ui-btn-block" data-route="<%= p.route %>"><%= p.title %></button>
+        <% }) %>
+    </div>
+</script>
+
+<script type="text/template" id="tpl-button">
+    <div class="ui-nav">
+        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
+        <div class="title">Button</div>
+    </div>
+    <div class="ui-page">
+        <h1>ui-btn</h1>
+
+        <button class="ui-btn">default</button>
+
+        <br>
+
+        <br>
+
+        <button class="ui-btn ui-btn-assertive">assertive</button>
+        <button class="ui-btn ui-btn-positive">positive</button>
+        <button class="ui-btn ui-btn-balanced">balanced</button>
+
+        <div class="ui-divider"></div>
+
+        <h1>ui-btn-block</h1>
+
+        <button class="ui-btn ui-btn-block">default</button>
+        <button class="ui-btn ui-btn-block ui-btn-assertive">assertive</button>
+        <button class="ui-btn ui-btn-block ui-btn-positive">positive</button>
+        <button class="ui-btn ui-btn-block ui-btn-balanced">balanced</button>
+
+        <h1>disabled</h1>
+
+        <button class="ui-btn ui-btn-block" disabled>default</button>
+        <button class="ui-btn ui-btn-block ui-btn-assertive" disabled>assertive</button>
+        <button class="ui-btn ui-btn-block ui-btn-positive" disabled>positive</button>
+        <button class="ui-btn ui-btn-block ui-btn-balanced" disabled>balanced</button>
+    </div>
+</script>
+
+<script type="text/template" id="tpl-icon">
+    <div class="ui-nav">
+        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
+        <div class="title">Icon</div>
+    </div>
+    <div class="ui-page">
+
+        <h1>Based on Font-Awesome 4.2.0</h1>
+
+        <i class="ui-icon-angle-left"></i>
+        <i class="ui-icon-angle-right"></i>
+        <i class="ui-icon-angle-up"></i>
+        <i class="ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon-sm ui-icon-angle-left"></i>
+        <i class="ui-icon-sm ui-icon-angle-right"></i>
+        <i class="ui-icon-sm ui-icon-angle-up"></i>
+        <i class="ui-icon-sm ui-icon-angle-down"></i>
+
+        <br>
+        
+        <i class="ui-icon ui-icon-angle-left"></i>
+        <i class="ui-icon ui-icon-angle-right"></i>
+        <i class="ui-icon ui-icon-angle-up"></i>
+        <i class="ui-icon ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon-lg ui-icon-angle-left"></i>
+        <i class="ui-icon-lg ui-icon-angle-right"></i>
+        <i class="ui-icon-lg ui-icon-angle-up"></i>
+        <i class="ui-icon-lg ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon ui-icon-spin ui-icon-circle-o-notch"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-refresh"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-spinner"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-cog"></i>
+
+        <br>
+
+        <br>
+
+        <i class="ui-icon ui-icon-battery-0 grey"></i>
+        <i class="ui-icon ui-icon-battery-1 assertive"></i>
+        <i class="ui-icon ui-icon-battery-2 balanced"></i>
+        <i class="ui-icon ui-icon-battery-3 balanced"></i>
+        <i class="ui-icon ui-icon-battery-4 balanced"></i>
+        
+    </div>
+</script>
+
+<!-- app -->
+<script src="index.js"></script>
+
+</body>
+</html>
