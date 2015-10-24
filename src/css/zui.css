@@ -1306,7 +1306,7 @@ h3 {
   z-index: 2000;
   width: 100%;
   height: 40px;
-  background-color: #231f1e; }
+  background-color: #231e1f; }
   .ui-nav .ui-nav-title, .ui-nav .title {
     margin: 0 60px;
     text-align: center;
@@ -1324,8 +1324,8 @@ h3 {
     font-weight: 300;
     padding: 0 15px;
     color: #fff;
-    background-color: #231f1e;
-    border-color: #231f1e; }
+    background-color: #231e1f;
+    border-color: #231e1f; }
     .ui-nav .ui-btn:focus, .ui-nav .ui-btn.focus {
       /* Remove outline & shadow */
       outline: none;
@@ -1333,7 +1333,7 @@ h3 {
       -webkit-box-shadow: none;
       box-shadow: none;
       color: #fff;
-      background-color: #080706;
+      background-color: #080607;
       border-color: black; }
     .ui-nav .ui-btn:hover {
       /* Remove Shadow */
@@ -1341,11 +1341,11 @@ h3 {
       -webkit-box-shadow: none;
       box-shadow: none;
       color: #fff;
-      background-color: #080706;
+      background-color: #080607;
       border-color: #020202; }
     .ui-nav .ui-btn:active, .ui-nav .ui-btn.active {
       color: #fff;
-      background-color: #080706;
+      background-color: #080607;
       border-color: #020202; }
       .ui-nav .ui-btn:active:hover, .ui-nav .ui-btn:active:focus, .ui-nav .ui-btn:active.focus, .ui-nav .ui-btn.active:hover, .ui-nav .ui-btn.active:focus, .ui-nav .ui-btn.active.focus {
         /* Remove outline & shadow */
@@ -1361,8 +1361,8 @@ h3 {
     .ui-nav .ui-btn.disabled, .ui-nav .ui-btn[disabled], fieldset[disabled] .ui-nav .ui-btn {
       opacity: .65; }
       .ui-nav .ui-btn.disabled, .ui-nav .ui-btn.disabled:hover, .ui-nav .ui-btn.disabled:focus, .ui-nav .ui-btn.disabled.focus, .ui-nav .ui-btn.disabled:active, .ui-nav .ui-btn.disabled.active, .ui-nav .ui-btn[disabled], .ui-nav .ui-btn[disabled]:hover, .ui-nav .ui-btn[disabled]:focus, .ui-nav .ui-btn[disabled].focus, .ui-nav .ui-btn[disabled]:active, .ui-nav .ui-btn[disabled].active, fieldset[disabled] .ui-nav .ui-btn, fieldset[disabled] .ui-nav .ui-btn:hover, fieldset[disabled] .ui-nav .ui-btn:focus, fieldset[disabled] .ui-nav .ui-btn.focus, fieldset[disabled] .ui-nav .ui-btn:active, fieldset[disabled] .ui-nav .ui-btn.active {
-        background-color: #231f1e;
-        border-color: #231f1e; }
+        background-color: #231e1f;
+        border-color: #231e1f; }
     .ui-nav .ui-btn:nth-of-type(1) {
       float: left;
       text-align: left; }
@@ -1970,185 +1970,6 @@ input[type="button"].ui-btn-block {
   font-size: 16px;
   line-height: 16px;
   background: none; }
-
-/* ========================================================================
-   Component: Flex
- ========================================================================== */
-.ui-flex {
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex; }
-
-.ui-flex-inline {
-  display: -ms-inline-flexbox;
-  display: -webkit-inline-flex;
-  display: inline-flex; }
-
-/*
- * Fixes initial flex-shrink value in IE10
- */
-.ui-flex > *,
-.ui-flex-inline > * {
-  -ms-flex-negative: 1; }
-
-/* Alignment
- ========================================================================== */
-/*
- * Vertical alignment
- * Default value is `stretch`
- */
-.ui-flex-top {
-  -ms-flex-align: start;
-  -webkit-align-items: flex-start;
-  align-items: flex-start; }
-
-.ui-flex-middle {
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center; }
-
-.ui-flex-bottom {
-  -ms-flex-align: end;
-  -webkit-align-items: flex-end;
-  align-items: flex-end; }
-
-/*
- * Horizontal alignment
- * Default value is `flex-start`
- */
-.ui-flex-center {
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center; }
-
-.ui-flex-right {
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end; }
-
-.ui-flex-space-between {
-  -ms-flex-pack: justify;
-  -webkit-justify-content: space-between;
-  justify-content: space-between; }
-
-.ui-flex-space-around {
-  -ms-flex-pack: distribute;
-  -webkit-justify-content: space-around;
-  justify-content: space-around; }
-
-/* Direction
- ========================================================================== */
-.ui-flex-row-reverse {
-  -ms-flex-direction: row-reverse;
-  -webkit-flex-direction: row-reverse;
-  flex-direction: row-reverse; }
-
-.ui-flex-column {
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column; }
-
-.ui-flex-column-reverse {
-  -ms-flex-direction: column-reverse;
-  -webkit-flex-direction: column-reverse;
-  flex-direction: column-reverse; }
-
-/* Wrap
- ========================================================================== */
-.ui-flex-nowrap {
-  -ms-flex-wrap: nowrap;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap; }
-
-.ui-flex-wrap {
-  -ms-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap; }
-
-.ui-flex-wrap-reverse {
-  -ms-flex-wrap: wrap-reverse;
-  -webkit-flex-wrap: wrap-reverse;
-  flex-wrap: wrap-reverse; }
-
-/*
- * Horizontal alignment
- * Default value is `stretch`
- */
-.ui-flex-wrap-top {
-  -ms-flex-line-pack: start;
-  -webkit-align-content: flex-start;
-  align-content: flex-start; }
-
-.ui-flex-wrap-middle {
-  -ms-flex-line-pack: center;
-  -webkit-align-content: center;
-  align-content: center; }
-
-.ui-flex-wrap-bottom {
-  -ms-flex-line-pack: end;
-  -webkit-align-content: flex-end;
-  align-content: flex-end; }
-
-.ui-flex-wrap-space-between {
-  -ms-flex-line-pack: justify;
-  -webkit-align-content: space-between;
-  align-content: space-between; }
-
-.ui-flex-wrap-space-around {
-  -ms-flex-line-pack: distribute;
-  -webkit-align-content: space-around;
-  align-content: space-around; }
-
-/* Item ordering
- ========================================================================== */
-/*
- * Default is 0
- */
-.ui-flex-order-first {
-  -ms-flex-order: -1;
-  -webkit-order: -1;
-  order: -1; }
-
-.ui-flex-order-last {
-  -ms-flex-order: 99;
-  -webkit-order: 99;
-  order: 99; }
-
-/* Item dimensions
- ========================================================================== */
-/*
- * Initial: 0 1 auto
- * Content dimensions, but shrinks
- */
-/*
- * No Flex: 0 0 auto
- * Content dimensions
- */
-.ui-flex-item-none {
-  -ms-flex: none;
-  -webkit-flex: none;
-  flex: none; }
-
-/*
- * Relative Flex: 1 1 auto
- * Space is allocated considering content
- * 1. Fixes flex-shrink value in IE10
- */
-.ui-flex-item-auto {
-  -ms-flex: auto;
-  -webkit-flex: auto;
-  flex: auto;
-  /* 1 */
-  -ms-flex-negative: 1; }
-
-/*
- * Absolute Flex: 1 1 0%
- * Space is allocated solely based on flex
- */
-.ui-flex-item-1 {
-  -ms-flex: 1;
-  -webkit-flex: 1;
-  flex: 1; }
 
 /* ========================================================================
    Component: Icon
@@ -4103,9 +3924,616 @@ input[type="button"].ui-btn-block {
 /* Page */
 /* Nav */
 /* Button */
+.ui-modal-perspective,
+.ui-modal-perspective body {
+  height: 100%;
+  overflow: hidden; }
+
+.ui-modal-perspective body {
+  background: #222;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  perspective: 600px; }
+
+.ui-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 87.5%;
+  height: auto;
+  z-index: 2000;
+  visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%); }
+
+.ui-modal-show {
+  visibility: visible; }
+
+.ui-modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  opacity: 0;
+  background: rgba(35, 30, 31, 0.8);
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s; }
+
+.ui-modal-show ~ .ui-modal-overlay {
+  opacity: 1;
+  visibility: visible; }
+
+/* Content styles */
+.ui-modal-content {
+  color: #fff;
+  background: #fff;
+  position: relative;
+  border-radius: 6px;
+  margin: 0 auto;
+  padding: 15px; }
+
+.ui-modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+.ui-modal-content h3 {
+  margin: 0;
+  padding: 0.4em;
+  text-align: center;
+  font-size: 2.4em;
+  font-weight: 300;
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px 6px 0 0; }
+
+.ui-modal-content > div {
+  width: 100%;
+  text-align: center; }
+
+/* Loading */
+.ui-modal-loading .ui-modal-content {
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  /* Loading Custom Style */
+  max-width: 50%;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6); }
+  .ui-modal-loading .ui-modal-content p {
+    font-size: 16px;
+    line-height: 16px; }
+
+.ui-modal-show.ui-modal-loading .ui-modal-content {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1; }
+
+.preload-wrapper {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px; }
+
+/* Preloader */
+.preload {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 0px;
+  margin-left: -20px;
+  margin-top: 30px;
+  z-index: 10;
+  -webkit-transform-origin: 50%;
+  -moz-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-animation: preload-spin 1s steps(12, end) infinite;
+  -moz-animation: preload-spin 1s steps(12, end) infinite;
+  animation: preload-spin 1s steps(12, end) infinite; }
+
+.preload:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-position: 50%;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%20120%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20xmlns%3Axlink%3D'http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink'%3E%3Cdefs%3E%3Cline%20id%3D'l'%20x1%3D'60'%20x2%3D'60'%20y1%3D'7'%20y2%3D'27'%20stroke%3D'%23fff'%20stroke-width%3D'11'%20stroke-linecap%3D'round'%2F%3E%3C%2Fdefs%3E%3Cg%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(30%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(60%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(90%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(120%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.27'%20transform%3D'rotate(150%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.37'%20transform%3D'rotate(180%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.46'%20transform%3D'rotate(210%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.56'%20transform%3D'rotate(240%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.66'%20transform%3D'rotate(270%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.75'%20transform%3D'rotate(300%2060%2C60)'%2F%3E%3Cuse%20xlink%3Ahref%3D'%23l'%20opacity%3D'.85'%20transform%3D'rotate(330%2060%2C60)'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"); }
+
+@-webkit-keyframes preload-spin {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@keyframes preload-spin {
+  100% {
+    transform: rotate(360deg); } }
+/* ========================================================================
+   Component: Grid
+ ========================================================================== */
+/*
+ * 1. Makes grid more robust so that it can be used with other block elements like lists
+ */
+.ui-grid {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  /* 1 */
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+/*
+ * DEPRECATED
+ * Micro clearfix
+ * Can't use `table` because it creates a 1px gap when it becomes a flex item, only in Webkit
+ */
+.ui-grid:before,
+.ui-grid:after {
+  content: "";
+  display: block;
+  overflow: hidden; }
+
+.ui-grid:after {
+  clear: both; }
+
+/*
+ * Grid cell
+ * 1. Space is allocated solely based on content dimensions
+ * 2. Makes grid more robust so that it can be used with other block elements
+ * 3. DEPRECATED Using `float` to support IE9
+ */
+.ui-grid > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+  float: left; }
+
+/*
+ * Remove margin from the last-child
+ */
+.ui-grid > * > :last-child {
+  margin-bottom: 0; }
+
+/* Grid gutter
+ ========================================================================== */
+/*
+ * Default gutter
+ */
+/* Horizontal */
+.ui-grid {
+  margin-left: -25px; }
+
+.ui-grid > * {
+  padding-left: 25px; }
+
+/* Vertical */
+.ui-grid + .ui-grid,
+.ui-grid-margin,
+.ui-grid > * > .ui-panel + .ui-panel {
+  margin-top: 25px; }
+
+/*
+ * Collapse gutter
+ */
+/* Horizontal */
+.ui-grid-collapse {
+  margin-left: 0; }
+
+.ui-grid-collapse > * {
+  padding-left: 0; }
+
+/* Vertical */
+.ui-grid-collapse + .ui-grid-collapse,
+.ui-grid-collapse > .ui-grid-margin,
+.ui-grid-collapse > * > .ui-panel + .ui-panel {
+  margin-top: 0; }
+
+/*
+ * Small gutter
+ */
+/* Horizontal */
+.ui-grid-sm {
+  margin-left: -10px; }
+
+.ui-grid-sm > * {
+  padding-left: 10px; }
+
+/* Vertical */
+.ui-grid-sm + .ui-grid-sm,
+.ui-grid-sm > .ui-grid-margin,
+.ui-grid-sm > * > .ui-panel + .ui-panel {
+  margin-top: 10px; }
+
+/*
+ * Medium gutter
+ */
+/* Horizontal */
+.ui-grid-md {
+  margin-left: -25px; }
+
+.ui-grid-md > * {
+  padding-left: 25px; }
+
+/* Vertical */
+.ui-grid-md + .ui-grid-md,
+.ui-grid-md > .ui-grid-margin,
+.ui-grid-md > * > .ui-panel + .ui-panel {
+  margin-top: 25px; }
+
+/* Modifier: `ui-grid-divider`
+ ========================================================================== */
+/*
+ * Horizontal divider
+ * Only works with the default gutter. Does not work with gutter collapse, small or large.
+ * Does not work with `ui-push-*`, `ui-pull-*` and not if the columns float into the next row.
+ */
+.ui-grid-divider:not(:empty) {
+  margin-left: -25px;
+  margin-right: -25px; }
+
+.ui-grid-divider > * {
+  padding-left: 25px;
+  padding-right: 25px; }
+
+.ui-grid-divider > [class*='ui-width-1-']:not(.ui-width-1-1):nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-2-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-3-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-4-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-5-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-6-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-7-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-8-']:nth-child(n+2),
+.ui-grid-divider > [class*='ui-width-9-']:nth-child(n+2) {
+  border-left: 1px solid #ddd; }
+
+/*
+ * Vertical divider
+ */
+.ui-grid-divider:empty {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-top: 1px solid #ddd; }
+
+/* Match panels in grids
+ ========================================================================== */
+/*
+ * 1. Behave like a block element
+ */
+.ui-grid-match > * {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  /* 1 */
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.ui-grid-match > * > * {
+  /* 1 */
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+  box-sizing: border-box;
+  width: 100%; }
+
+/* Even grid cell widths
+ ========================================================================== */
+[class*='ui-grid-width'] > * {
+  box-sizing: border-box;
+  width: 100%; }
+
+.ui-grid-width-1-2 > * {
+  width: 50%; }
+
+.ui-grid-width-1-3 > * {
+  width: 33.333%; }
+
+.ui-grid-width-1-4 > * {
+  width: 25%; }
+
+.ui-grid-width-1-5 > * {
+  width: 20%; }
+
+.ui-grid-width-1-6 > * {
+  width: 16.666%; }
+
+.ui-grid-width-1-10 > * {
+  width: 10%; }
+
+/* Sub-objects: `ui-width-*`
+ ========================================================================== */
+[class*='ui-width'] {
+  box-sizing: border-box;
+  width: 100%; }
+
+/*
+ * Widths
+ */
+/* Whole */
+.ui-width-1-1 {
+  width: 100%; }
+
+/* Halves */
+.ui-width-1-2,
+.ui-width-2-4,
+.ui-width-3-6,
+.ui-width-5-10 {
+  width: 50%; }
+
+/* Thirds */
+.ui-width-1-3,
+.ui-width-2-6 {
+  width: 33.333%; }
+
+.ui-width-2-3,
+.ui-width-4-6 {
+  width: 66.666%; }
+
+/* Quarters */
+.ui-width-1-4 {
+  width: 25%; }
+
+.ui-width-3-4 {
+  width: 75%; }
+
+/* Fifths */
+.ui-width-1-5,
+.ui-width-2-10 {
+  width: 20%; }
+
+.ui-width-2-5,
+.ui-width-4-10 {
+  width: 40%; }
+
+.ui-width-3-5,
+.ui-width-6-10 {
+  width: 60%; }
+
+.ui-width-4-5,
+.ui-width-8-10 {
+  width: 80%; }
+
+/* Sixths */
+.ui-width-1-6 {
+  width: 16.666%; }
+
+.ui-width-5-6 {
+  width: 83.333%; }
+
+/* Tenths */
+.ui-width-1-10 {
+  width: 10%; }
+
+.ui-width-3-10 {
+  width: 30%; }
+
+.ui-width-7-10 {
+  width: 70%; }
+
+.ui-width-9-10 {
+  width: 90%; }
+
+/* ========================================================================
+   Component: Flex
+ ========================================================================== */
+.ui-flex {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; }
+
+.ui-flex-inline {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex; }
+
+/*
+ * Fixes initial flex-shrink value in IE10
+ */
+.ui-flex > *,
+.ui-flex-inline > * {
+  -ms-flex-negative: 1; }
+
+/* Alignment
+ ========================================================================== */
+/*
+ * Vertical alignment
+ * Default value is `stretch`
+ */
+.ui-flex-top {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start; }
+
+.ui-flex-middle {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+
+.ui-flex-bottom {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end; }
+
+/*
+ * Horizontal alignment
+ * Default value is `flex-start`
+ */
+.ui-flex-center {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center; }
+
+.ui-flex-right {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end; }
+
+.ui-flex-space-between {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between; }
+
+.ui-flex-space-around {
+  -ms-flex-pack: distribute;
+  -webkit-justify-content: space-around;
+  justify-content: space-around; }
+
+/* Direction
+ ========================================================================== */
+.ui-flex-row-reverse {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse; }
+
+.ui-flex-column {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column; }
+
+.ui-flex-column-reverse {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse; }
+
+/* Wrap
+ ========================================================================== */
+.ui-flex-nowrap {
+  -ms-flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap; }
+
+.ui-flex-wrap {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap; }
+
+.ui-flex-wrap-reverse {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse; }
+
+/*
+ * Horizontal alignment
+ * Default value is `stretch`
+ */
+.ui-flex-wrap-top {
+  -ms-flex-line-pack: start;
+  -webkit-align-content: flex-start;
+  align-content: flex-start; }
+
+.ui-flex-wrap-middle {
+  -ms-flex-line-pack: center;
+  -webkit-align-content: center;
+  align-content: center; }
+
+.ui-flex-wrap-bottom {
+  -ms-flex-line-pack: end;
+  -webkit-align-content: flex-end;
+  align-content: flex-end; }
+
+.ui-flex-wrap-space-between {
+  -ms-flex-line-pack: justify;
+  -webkit-align-content: space-between;
+  align-content: space-between; }
+
+.ui-flex-wrap-space-around {
+  -ms-flex-line-pack: distribute;
+  -webkit-align-content: space-around;
+  align-content: space-around; }
+
+/* Item ordering
+ ========================================================================== */
+/*
+ * Default is 0
+ */
+.ui-flex-order-first {
+  -ms-flex-order: -1;
+  -webkit-order: -1;
+  order: -1; }
+
+.ui-flex-order-last {
+  -ms-flex-order: 99;
+  -webkit-order: 99;
+  order: 99; }
+
+/* Item dimensions
+ ========================================================================== */
+/*
+ * Initial: 0 1 auto
+ * Content dimensions, but shrinks
+ */
+/*
+ * No Flex: 0 0 auto
+ * Content dimensions
+ */
+.ui-flex-item-none {
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none; }
+
+/*
+ * Relative Flex: 1 1 auto
+ * Space is allocated considering content
+ * 1. Fixes flex-shrink value in IE10
+ */
+.ui-flex-item-auto {
+  -ms-flex: auto;
+  -webkit-flex: auto;
+  flex: auto;
+  /* 1 */
+  -ms-flex-negative: 1; }
+
+/*
+ * Absolute Flex: 1 1 0%
+ * Space is allocated solely based on flex
+ */
+.ui-flex-item-1 {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1; }
+
+/* Basic */
+/* Page */
+/* Nav */
+/* Button */
+/*
+  Padding
+*/
 .no-padding {
   padding: 0 !important; }
 
+/*
+  Color
+*/
 .assertive {
   color: #ec4949; }
 
@@ -4117,5 +4545,33 @@ input[type="button"].ui-btn-block {
 
 .grey {
   color: #ddd; }
+
+/*
+  Background Color
+*/
+.assertive-bg {
+  background-color: #ec4949; }
+
+.positive-bg {
+  background-color: #47a8ef; }
+
+.balanced-bg {
+  background-color: #04be02; }
+
+.grey-bg {
+  background-color: #eee; }
+
+/*
+  Text Align
+*/
+.text-center {
+  text-align: center; }
+
+/*
+  Divider
+ */
+.ui-divider {
+  width: 100%;
+  height: 10px; }
 
 /*# sourceMappingURL=zui.css.map */

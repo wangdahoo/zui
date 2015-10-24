@@ -2,6 +2,8 @@ $positive:                    #47a8ef;
 $assertive:                   #ec4949;
 $balanced:                    #04be02;
 
+$dark:                        #231e1f;
+
 $default-text-color:          #444;
 
 /* Basic */
@@ -15,7 +17,7 @@ $page-default-bg:             #f4f4f4;
 
 /* Nav */
 $nav-default-height:          40px;
-$nav-default-bg:              #231f1e;
+$nav-default-bg:              $dark;
 $nav-default-color:           #fff;
 $nav-default-title-font-size: 18px;
 
@@ -41,4 +43,3 @@ $btn-font-size-base:          16px;
 // $btn-line-height-base:        1.428571429; // 20/14
 $btn-line-height-base:        36px;
 $btn-border-radius-base:      4px;
-

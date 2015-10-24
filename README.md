@@ -9,11 +9,11 @@ A UI Framework for H5 Single Page App
 - Nav
 - Button
 - Icon
-- List
 - Grid
-- Article
-- Toast
-- Dialog
+- List
+
+- Loading
+- Dialog (Alert, Confirm, Toast)
 
 ### App Foundation
 
