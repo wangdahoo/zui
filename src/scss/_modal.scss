@@ -70,14 +70,14 @@
   right: 10px;
 }
 
-.ui-modal-content h3 {
+.ui-modal-content > h1, .ui-modal-content > .title {
   margin: 0;
   padding: 0.4em;
   text-align: center;
-  font-size: 2.4em;
+  font-size: 18px;
+  line-height: 18px;
   font-weight: 300;
   opacity: 0.8;
-  background: rgba(0,0,0,0.1);
   border-radius: 6px 6px 0 0;
 }
 
@@ -93,9 +93,6 @@
   -ms-transform: scale(0.7);
   transform: scale(0.7);
   opacity: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
 
   /* Loading Custom Style */
   max-width: 50%;
@@ -111,6 +108,13 @@
     font-size: 16px;
     line-height: 16px;
   }
+}
+
+.ui-modal-loading .ui-modal-content,
+.ui-modal-show.ui-modal-loading .ui-modal-content {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .ui-modal-show.ui-modal-loading .ui-modal-content {
@@ -167,4 +171,31 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Dialog ( Alert & Confirm ) */
+.ui-modal-dialog .ui-modal-content {
+  -webkit-transform: translateY(-20%); // -5%
+  -moz-transform: translateY(-20%); // -5%
+  -ms-transform: translateY(-20%); // -5%
+  transform: translateY(-20%); // -5%
+  opacity: 0;
+
+  color: $dark;
+  text-align: center;
+}
+
+.ui-modal-dialog .ui-modal-content,
+.ui-modal-show.ui-modal-dialog .ui-modal-content {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.ui-modal-show.ui-modal-dialog .ui-modal-content {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
 }

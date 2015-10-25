@@ -3,6 +3,12 @@ $(function() {
     console.log('ZUI Example');
 
     var LOADING_TEMPLATE = $('#tpl-loading').html();
+    var ALERT_TEMPLATE = $('#tpl-alert').html();
+    var CONFIRM_TEMPLATE = $('#tpl-confirm').html();
+
+    var preventDefault = function(e) {
+        e.preventDefault();
+    };
 
     /* 首页 */
     var HomeModel = Backbone.Model.extend({
@@ -32,23 +38,41 @@ $(function() {
         open: function(e) {
             var route = $(e.target).data('route');
             var isEffect = _.indexOf(['loading', 'alert', 'confirm'], route);
-            if (isEffect == 0) {
+            if (isEffect == 0) { // Loading
                 var tpl = _.template(LOADING_TEMPLATE)({ msg: 'Loading...' });
                 $('body').append(tpl);
                 var loading = $('#loading');
                 loading.addClass('ui-modal-show');
-                var preventDefault = function(e) {
-                    e.preventDefault();
-                };
                 window.addEventListener('touchstart', preventDefault);
                 _.delay(function() {
                     loading.removeClass('ui-modal-show');
                     window.removeEventListener('touchstart', preventDefault);
                 }, 3000);
-            } else if (isEffect == 1) {
-                // todo
+            } else if (isEffect == 1) { // Alert
+                if ($('#alert').size() == 0) {
+                    var tpl = _.template(ALERT_TEMPLATE)({ msg: 'This is a alert' });
+                    $('.ui-modal-overlay').before(tpl);
+                }
+                var alertDialog  = $('#alert');
+                _.delay(function() {
+                    alertDialog.addClass('ui-modal-show');
+                });
+                $('#alert .btn-ok').on('click', function() {
+                    alertDialog.removeClass('ui-modal-show');
+                });
             } else if (isEffect == 2) {
-                // todo
+                if ($('#confirm').size() == 0) {
+                    var tpl = _.template(CONFIRM_TEMPLATE)({ msg: 'This is a confirm' });
+                    $('.ui-modal-overlay').before(tpl);
+                }
+                var confirmDialog  = $('#confirm');
+                _.delay(function() {
+                    confirmDialog.addClass('ui-modal-show');
+                });
+                confirmDialog.find('.btn-ok, .btn-cancel').on('click', function() {
+                    confirmDialog.removeClass('ui-modal-show');
+                    $(e.target).html('confirm => ' + $(this).data('result') + ' clicked!');
+                });
             } else {
                 app.navigate(route, {trigger: true});
             }
@@ -170,5 +194,7 @@ $(function() {
     window.app = new AppRouter();
 
     Backbone.history.start();
+
+    app.navigate('home', {trigger: true});
 
 });

@@ -36,6 +36,8 @@
             Confirm
         </button>
     </div>
+
+    <div class="ui-modal-overlay"></div>
 </script>
 
 <script type="text/template" id="tpl-loading">
@@ -45,6 +47,40 @@
                 <div class="preload"></div>
             </div>
             <p><%= msg %></p>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl-alert">
+    <div id="alert" class="ui-modal ui-modal-dialog">
+        <div class="ui-modal-content">
+            <div class="title">Title</div>
+            <p><%= msg %></p>
+            <button class="ui-btn ui-btn-block ui-btn-positive btn-ok">
+                Ok
+            </button>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="tpl-confirm">
+    <div id="confirm" class="ui-modal ui-modal-dialog">
+        <div class="ui-modal-content">
+            <div class="title">Title</div>
+            <p><%= msg %></p>
+
+            <div class="ui-flex">
+                <div class="ui-width-1-2" style="padding-right: 5px;">
+                    <button class="ui-btn ui-btn-block ui-btn-positive btn-ok" data-result="Ok">
+                        Ok
+                    </button>
+                </div>
+                <div class="ui-width-1-2" style="padding-left: 5px;">
+                    <button class="ui-btn ui-btn-block btn-cancel" data-result="Cancel">
+                        Cancel
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </script>

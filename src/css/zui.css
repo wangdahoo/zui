@@ -3986,14 +3986,14 @@ input[type="button"].ui-btn-block {
   top: 10px;
   right: 10px; }
 
-.ui-modal-content h3 {
+.ui-modal-content > h1, .ui-modal-content > .title {
   margin: 0;
   padding: 0.4em;
   text-align: center;
-  font-size: 2.4em;
+  font-size: 18px;
+  line-height: 18px;
   font-weight: 300;
   opacity: 0.8;
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 6px 6px 0 0; }
 
 .ui-modal-content > div {
@@ -4007,9 +4007,6 @@ input[type="button"].ui-btn-block {
   -ms-transform: scale(0.7);
   transform: scale(0.7);
   opacity: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
   /* Loading Custom Style */
   max-width: 50%;
   border-radius: 5px;
@@ -4022,6 +4019,12 @@ input[type="button"].ui-btn-block {
   .ui-modal-loading .ui-modal-content p {
     font-size: 16px;
     line-height: 16px; }
+
+.ui-modal-loading .ui-modal-content,
+.ui-modal-show.ui-modal-loading .ui-modal-content {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s; }
 
 .ui-modal-show.ui-modal-loading .ui-modal-content {
   -webkit-transform: scale(1);
@@ -4069,6 +4072,29 @@ input[type="button"].ui-btn-block {
 @keyframes preload-spin {
   100% {
     transform: rotate(360deg); } }
+/* Dialog ( Alert & Confirm ) */
+.ui-modal-dialog .ui-modal-content {
+  -webkit-transform: translateY(-20%);
+  -moz-transform: translateY(-20%);
+  -ms-transform: translateY(-20%);
+  transform: translateY(-20%);
+  opacity: 0;
+  color: #231e1f;
+  text-align: center; }
+
+.ui-modal-dialog .ui-modal-content,
+.ui-modal-show.ui-modal-dialog .ui-modal-content {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s; }
+
+.ui-modal-show.ui-modal-dialog .ui-modal-content {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1; }
+
 /* ========================================================================
    Component: Grid
  ========================================================================== */
@@ -4130,16 +4156,16 @@ input[type="button"].ui-btn-block {
  */
 /* Horizontal */
 .ui-grid {
-  margin-left: -25px; }
+  margin-left: -10px; }
 
 .ui-grid > * {
-  padding-left: 25px; }
+  padding-left: 10px; }
 
 /* Vertical */
 .ui-grid + .ui-grid,
 .ui-grid-margin,
 .ui-grid > * > .ui-panel + .ui-panel {
-  margin-top: 25px; }
+  margin-top: 10px; }
 
 /*
  * Collapse gutter
@@ -4162,32 +4188,32 @@ input[type="button"].ui-btn-block {
  */
 /* Horizontal */
 .ui-grid-sm {
-  margin-left: -10px; }
+  margin-left: -5px; }
 
 .ui-grid-sm > * {
-  padding-left: 10px; }
+  padding-left: 5px; }
 
 /* Vertical */
 .ui-grid-sm + .ui-grid-sm,
 .ui-grid-sm > .ui-grid-margin,
 .ui-grid-sm > * > .ui-panel + .ui-panel {
-  margin-top: 10px; }
+  margin-top: 5px; }
 
 /*
  * Medium gutter
  */
 /* Horizontal */
 .ui-grid-md {
-  margin-left: -25px; }
+  margin-left: -10px; }
 
 .ui-grid-md > * {
-  padding-left: 25px; }
+  padding-left: 10px; }
 
 /* Vertical */
 .ui-grid-md + .ui-grid-md,
 .ui-grid-md > .ui-grid-margin,
 .ui-grid-md > * > .ui-panel + .ui-panel {
-  margin-top: 25px; }
+  margin-top: 10px; }
 
 /* Modifier: `ui-grid-divider`
  ========================================================================== */
@@ -4197,12 +4223,12 @@ input[type="button"].ui-btn-block {
  * Does not work with `ui-push-*`, `ui-pull-*` and not if the columns float into the next row.
  */
 .ui-grid-divider:not(:empty) {
-  margin-left: -25px;
-  margin-right: -25px; }
+  margin-left: -10px;
+  margin-right: -10px; }
 
 .ui-grid-divider > * {
-  padding-left: 25px;
-  padding-right: 25px; }
+  padding-left: 10px;
+  padding-right: 10px; }
 
 .ui-grid-divider > [class*='ui-width-1-']:not(.ui-width-1-1):nth-child(n+2),
 .ui-grid-divider > [class*='ui-width-2-']:nth-child(n+2),
@@ -4219,8 +4245,8 @@ input[type="button"].ui-btn-block {
  * Vertical divider
  */
 .ui-grid-divider:empty {
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border-top: 1px solid #ddd; }
 
 /* Match panels in grids
@@ -4530,6 +4556,9 @@ input[type="button"].ui-btn-block {
 */
 .no-padding {
   padding: 0 !important; }
+
+.padding {
+  padding: 15px; }
 
 /*
   Color
