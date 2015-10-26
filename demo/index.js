@@ -14,13 +14,12 @@ $(function() {
     var HomeModel = Backbone.Model.extend({
         defaults: {
             pages: [
-                { title: 'Button', route: '#button' },
                 { title: 'Icon', route: '#icon' },
-                { title: 'Grid', route: '#grid' },
+                { title: 'Button', route: '#button' },
                 { title: 'List', route: '#list' },
+                { title: 'Grid', route: '#grid' },
                 { title: 'Loading', route: 'loading' },
-                { title: 'Alert', route: 'alert' },
-                { title: 'Confirm', route: 'confirm' }
+                { title: 'Dialog', route: 'alert' }
             ]
         }
     });

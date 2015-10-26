@@ -3,7 +3,7 @@
 .ui-list {
   padding: 0;
   list-style: none;
-
+  margin: 0;
   background-color: #fff;
 }
 
@@ -34,6 +34,10 @@
 .ui-list-line > .ui-list-item:nth-child(n+2)
 {
   border-top: $list-line-border-width solid $list-line-border;
+}
+
+.ui-list-striped {
+  background: none;
 }
 
 .ui-list-striped > li,
@@ -68,6 +72,10 @@
   border-width: 0 0 1px 0;
   border-image: $border-image;
   line-height: 30px;
+
+  &:last-of-type {
+    border-width: 0;
+  }
 }
 
 .ui-list > li,
@@ -114,7 +122,7 @@
     top: $list-item-default-padding-vertical;
 
     width: 60px;
-    height: auto;
+    height: 60px;
     border-radius: 2px;
   }
 
@@ -123,8 +131,26 @@
   }
 }
 
+.ui-list > .ui-list-item-thumbnail-lg {
+  min-height: 100px;
+
+  img {
+    position: absolute;
+    top: $list-item-default-padding-vertical;
+
+    width: 80px;
+    height: 80px;
+    border-radius: 2px;
+  }
+
+  .title, .description {
+    margin-left: 90px;
+  }
+}
+
 .ui-list > .ui-list-item-avatar,
-.ui-list > .ui-list-item-thumbnail
+.ui-list > .ui-list-item-thumbnail,
+.ui-list > .ui-list-item-thumbnail-lg
 {
   img {
     left: $list-item-default-padding-horizontal;
@@ -132,7 +158,8 @@
 }
 
 .ui-list-ios > .ui-list-item-avatar,
-.ui-list-ios > .ui-list-item-thumbnail
+.ui-list-ios > .ui-list-item-thumbnail,
+.ui-list-ios > .ui-list-item-thumbnail-lg
 {
   img {
     left: 0;
