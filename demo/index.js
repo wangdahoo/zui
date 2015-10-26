@@ -16,7 +16,11 @@ $(function() {
             pages: [
                 { title: 'Button', route: '#button' },
                 { title: 'Icon', route: '#icon' },
-                { title: 'Grid', route: '#grid' }
+                { title: 'Grid', route: '#grid' },
+                { title: 'List', route: '#list' },
+                { title: 'Loading', route: 'loading' },
+                { title: 'Alert', route: 'alert' },
+                { title: 'Confirm', route: 'confirm' }
             ]
         }
     });
@@ -27,7 +31,7 @@ $(function() {
         template: _.template($('#tpl-home').html()),
 
         events: {
-            'click .ui-btn': 'open'
+            'click li': 'open'
         },
 
         render: function() {
@@ -39,8 +43,12 @@ $(function() {
             var route = $(e.target).data('route');
             var isEffect = _.indexOf(['loading', 'alert', 'confirm'], route);
             if (isEffect == 0) { // Loading
-                var tpl = _.template(LOADING_TEMPLATE)({ msg: 'Loading...' });
-                $('body').append(tpl);
+
+                if ($('#loading').size() == 0) {
+                    var tpl = _.template(LOADING_TEMPLATE)({ msg: 'Loading...' });
+                    $('body').append(tpl);
+                }
+
                 var loading = $('#loading');
                 loading.addClass('ui-modal-show');
                 window.addEventListener('touchstart', preventDefault);
@@ -139,6 +147,26 @@ $(function() {
         }
     });
 
+    /* List */
+    var ListView = Backbone.View.extend({
+        el: 'body',
+
+        template: _.template($('#tpl-list').html()),
+
+        events: {
+            'click .btn-back':  'back'
+        },
+
+        render: function() {
+            this.$el.html(this.template({}));
+            return this;
+        },
+
+        back: function() {
+            app.navigate('back_to_home', {trigger: true});
+        }
+    });
+
     var _models = {};
     _models['home'] = new HomeModel();
 
@@ -147,6 +175,7 @@ $(function() {
     _views['button'] = new ButtonView();
     _views['icon'] = new IconView();
     _views['grid'] = new GridView();
+    _views['list'] = new ListView();
 
 
     var AppRouter = Backbone.Router.extend({
@@ -157,7 +186,8 @@ $(function() {
 
             'button':       'button',
             'icon':         'icon',
-            'grid':         'grid'
+            'grid':         'grid',
+            'list':         'list'
 
         },
 
@@ -184,6 +214,11 @@ $(function() {
 
         grid: function() {
             _views['grid'].render();
+            $('.ui-page').addClass('animated fade-in-right');
+        },
+
+        list: function() {
+            _views['list'].render();
             $('.ui-page').addClass('animated fade-in-right');
         }
 

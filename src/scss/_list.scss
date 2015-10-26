@@ -1,0 +1,144 @@
+@import "_variable";
+
+.ui-list {
+  padding: 0;
+  list-style: none;
+
+  background-color: #fff;
+}
+
+.ui-list > li:before,
+.ui-list > li:after,
+.ui-list > .ui-list-item:before,
+.ui-list > .ui-list-item:after,
+{
+  content: "";
+  display: table;
+}
+
+.ui-list > li:after
+.ui-list > .ui-list-item:after
+{ clear: both; }
+
+.ui-list > li > :last-child,
+.ui-list > .ui-list-item > :last-child
+{ margin-bottom: 0; }
+
+.ui-list ul {
+  margin: 0;
+  padding-left: $list-nested-padding-left;
+  list-style: none;
+}
+
+.ui-list-line > li:nth-child(n+2),
+.ui-list-line > .ui-list-item:nth-child(n+2)
+{
+  border-top: $list-line-border-width solid $list-line-border;
+}
+
+.ui-list-striped > li,
+.ui-list-striped > .ui-list-item
+{
+  padding: $list-striped-padding-vertical $list-striped-padding-horizontal;
+}
+
+.ui-list-striped > li:nth-of-type(odd),
+.ui-list-striped > .ui-list-item:nth-of-type(odd)
+{ background: $list-striped-background; }
+
+/* Default .ui-list-item */
+
+.ui-list > li,
+.ui-list > .ui-list-item {
+  padding: $list-item-default-padding-vertical $list-item-default-padding-horizontal;
+  line-height: 30px;
+  margin: 0;
+}
+
+/* ui-list-ios */
+
+.ui-list-ios {
+  background-color: $light;
+}
+
+.ui-list-ios > li,
+.ui-list-ios > .ui-list-item {
+  padding: $list-ios-padding-vertical $list-ios-padding-horizontal $list-ios-padding-vertical 0;
+  margin-left: $list-nested-padding-left;
+  border-width: 0 0 1px 0;
+  border-image: $border-image;
+  line-height: 30px;
+}
+
+.ui-list > li,
+.ui-list > .ui-list-item {
+
+  position: relative;
+
+  .title {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 5px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+    color: #aaa;
+  }
+
+}
+
+.ui-list > .ui-list-item-avatar {
+  min-height: 65px;
+
+  img {
+    position: absolute;
+    top: $list-item-default-padding-vertical;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  .title, .description {
+    margin-left: 54px;
+  }
+}
+
+.ui-list > .ui-list-item-thumbnail {
+  min-height: 80px;
+
+  img {
+    position: absolute;
+    top: $list-item-default-padding-vertical;
+
+    width: 60px;
+    height: auto;
+    border-radius: 2px;
+  }
+
+  .title, .description {
+    margin-left: 70px;
+  }
+}
+
+.ui-list > .ui-list-item-avatar,
+.ui-list > .ui-list-item-thumbnail
+{
+  img {
+    left: $list-item-default-padding-horizontal;
+  }
+}
+
+.ui-list-ios > .ui-list-item-avatar,
+.ui-list-ios > .ui-list-item-thumbnail
+{
+  img {
+    left: 0;
+  }
+}
+
+
+
+

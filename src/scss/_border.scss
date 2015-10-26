@@ -1,0 +1,38 @@
+@import "_variable";
+
+/* 细边框 */
+
+.thin-border {
+  border-width: 1px;
+  border-image: $border-image;
+}
+
+.thin-border-top {
+  border-width: 1px 0 0 0;
+  border-image: $border-image;
+}
+
+.thin-border-bottom {
+  border-width: 0 0 1px 0;
+  border-image: $border-image;
+}
+
+.thin-border-left {
+  border-width: 0 0 0 1px;
+  border-image: $border-image;
+}
+
+.thin-border-right {
+  border-width: 0 1px 0 0;
+  border-image: $border-image;
+}
+
+.thin-border-top-bottom {
+  border-width: 1px 0 1px 0;
+  border-image: $border-image;
+}
+
+.thin-border-bottom-right {
+  border-width: 0 1px 1px 0;
+  border-image: $border-image;
+}

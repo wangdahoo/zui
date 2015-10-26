@@ -41,6 +41,18 @@
   margin-top: 10px;
 }
 
+.ui-btn-full {
+  display: block;
+  width: 100%;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-radius: 0;
+}
+
+.ui-btn-full + .ui-btn-full {
+  margin-top: 10px;
+}
+
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {

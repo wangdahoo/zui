@@ -1,45 +1,64 @@
-$positive:                    #47a8ef;
-$assertive:                   #ec4949;
-$balanced:                    #04be02;
+/* Color */
+$positive:                                      #47a8ef;
+$assertive:                                     #ec4949;
+$balanced:                                      #04be02;
+$dark:                                          #231e1f;
+$light:                                         #fff;
+$grey:                                          #eee;
+$stable:                                        #f4f4f4;
 
-$dark:                        #231e1f;
-
-$default-text-color:          #444;
+$default-text-color:                            #444;
+$default-border-color:                          #eee;
+$default-padding:                               15px;
+$default-margin:                                10px;
 
 /* Basic */
-$font-size-base:              14px;
-$padding-base-vertical:       6px;
-$padding-base-horizontal:     12px;
+$font-size-base:                                14px;
+$padding-base-vertical:                         6px;
+$padding-base-horizontal:                       12px;
 
-/* Page */
-$page-default-padding:        15px;
-$page-default-bg:             #f4f4f4;
+/* Component Page */
+$page-default-padding:                          15px;
+$page-default-bg:                               #f4f4f4;
 
-/* Nav */
-$nav-default-height:          40px;
-$nav-default-bg:              $dark;
-$nav-default-color:           #fff;
-$nav-default-title-font-size: 18px;
+/* Component Nav */
+$nav-default-height:                            40px;
+$nav-default-bg:                                $dark;
+$nav-default-color:                             #fff;
+$nav-default-title-font-size:                   18px;
 
-/* Button */
-$btn-font-weight:             normal;
-$btn-default-color:           #333;
-$btn-default-bg:              #fff;
-$btn-default-border:          #ccc;
+/* Component Button */
+$btn-font-weight:                               normal;
+$btn-default-color:                             #333;
+$btn-default-bg:                                #fff;
+$btn-default-border:                            #ccc;
+$btn-assertive-color:                           #fff;
+$btn-assertive-bg:                              $assertive;
+$btn-assertive-border:                          darken($assertive, 5%);
+$btn-positive-color:                            #fff;
+$btn-positive-bg:                               $positive;
+$btn-positive-border:                           darken($positive, 5%);
+$btn-balanced-color:                            #fff;
+$btn-balanced-bg:                               $balanced;
+$btn-balanced-border:                           darken($balanced, 5%);
+$btn-font-size-base:                            16px;
+// $btn-line-height-base:                       1.428571429; // 20/14
+$btn-line-height-base:                          36px;
+$btn-border-radius-base:                        4px;
 
-$btn-assertive-color:         #fff;
-$btn-assertive-bg:            $assertive;
-$btn-assertive-border:        darken($assertive, 5%);
+/* Component List */
+$list-nested-padding-left:                      20px;
+$list-line-margin-top:                          5px;
+$list-line-border:                              $default-border-color;
+$list-line-border-width:                        1px;
+$list-striped-padding-vertical:                 5px;
+$list-striped-padding-horizontal:               5px;
+$list-striped-background:                       $light;
+$list-ios-padding-vertical:                     10px;
+$list-ios-padding-horizontal:                   10px;
 
-$btn-positive-color:          #fff;
-$btn-positive-bg:             $positive;
-$btn-positive-border:         darken($positive, 5%);
+$list-item-default-padding-vertical:            10px;
+$list-item-default-padding-horizontal:          15px;
 
-$btn-balanced-color:          #fff;
-$btn-balanced-bg:             $balanced;
-$btn-balanced-border:         darken($balanced, 5%);
-
-$btn-font-size-base:          16px;
-// $btn-line-height-base:        1.428571429; // 20/14
-$btn-line-height-base:        36px;
-$btn-border-radius-base:      4px;
+/* Thin Border */
+$border-image:                                  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpifPrk8X8GIgALiJCSlmHEp+jZ0yf/mRiIBCNTIQssnAgpBAgwAJ8RC3E8yIGBAAAAAElFTkSuQmCC') 2 round;

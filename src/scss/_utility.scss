@@ -1,6 +1,29 @@
 @import "_variable";
 
 /*
+  Container
+*/
+
+.ui-container {
+  box-sizing: border-box;
+  max-width: 980px;
+  padding: 0 $page-default-padding;
+}
+
+.ui-container:before,
+.ui-container:after {
+  content: "";
+  display: table;
+}
+
+.ui-container:after { clear: both; }
+
+.ui-container-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*
   Padding
 */
 .no-padding {
@@ -8,7 +31,7 @@
 }
 
 .padding {
-  padding: 15px;
+  padding: 15px !important;
 }
 
 /*
@@ -27,7 +50,19 @@
 }
 
 .grey {
-  color: #ddd;
+  color: $grey;
+}
+
+.dark-grey {
+  color: #aaa;
+}
+
+.dark {
+  color: $dark;
+}
+
+.light {
+  color: $light;
 }
 
 /*
@@ -47,7 +82,15 @@
 }
 
 .grey-bg {
-  background-color: #eee;
+  background-color: $grey;
+}
+
+.light-bg {
+  background-color: $light;
+}
+
+.dark-bg {
+  background-color: $dark;
 }
 
 /*
@@ -65,4 +108,21 @@
 .ui-divider {
   width: 100%;
   height: 10px;
+}
+
+/*
+  Margin
+*/
+
+.margin-top {
+  margin-top: 10px !important;
+}
+
+.margin-bottom {
+  margin-bottom: 10px !important;
+}
+
+/* Align */
+.pull-right {
+  float: right;
 }
