@@ -5,46 +5,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>ZUI Intro</title>
     <link rel="stylesheet" href="../../dist/css/zui.min.css"/>
+
+    <!-- jQuery, Underscore Before Zui -->
+    <!--<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/underscore/underscore-min.js"></script>
+    <script src="../../src/js/zui.js"></script>
+    <script src="../../bower_components/fastclick/lib/fastclick.js"></script>-->
+
+    <!-- Or just use zui.bundle.js -->
+    <script src="../../dist/js/zui.bundle.min.js"></script>
+
+    <script type="application/javascript">
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+
+    <script src="index.js"></script>
 </head>
 <body>
-
-<!-- templates -->
-<script type="text/template" id="tpl-home">
-    <div class="ui-grid text-center margin-bottom">
-        <div class="ui-width-2-5"></div>
-        <div class="ui-width-1-5">
-            <img src="images/wangdahoo.jpg" alt="author" class="thumbnail thumbnail-circle"/>
-        </div>
-    </div>
-
-    <h3 class="text-center">by Wangdahoo</h3>
-
-    <div class="ui-divider"></div>
-
-    <ul class="ui-list ui-list-ios thin-border-top-bottom margin-bottom">
-        <% _.each(items, function(item, i) { %>
-        <li data-route="<%= item.route %>">
-            <%= item.title %>
-            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-        </li>
-        <% }) %>
-    </ul>
-
-    <h3 class="text-center">Version: 0.1.0</h3>
-
-    <div class="ui-divider-lg"></div>
-</script>
-
-<script type="text/template" id="tpl-loading">
-    <div id="loading" class="ui-modal ui-modal-loading">
-        <div class="ui-modal-content">
-            <div class="preload-wrapper">
-                <div class="preload"></div>
-            </div>
-            <p><%= msg %></p>
-        </div>
-    </div>
-</script>
 
 <script type="text/template" id="tpl-alert">
     <div id="alert" class="ui-modal ui-modal-dialog">
@@ -80,416 +61,403 @@
     </div>
 </script>
 
-<!-- Button-->
-<script type="text/template" id="tpl-button">
-    <div class="ui-nav">
-        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
-        <div class="title">Button</div>
+<!-- Page Templates - Start -->
+
+<!-- Home -->
+<script type="text/template" id="tpl-home">
+    <div class="ui-grid text-center margin-bottom">
+        <div class="ui-width-2-5"></div>
+        <div class="ui-width-1-5">
+            <img src="images/wangdahoo.jpg" alt="author" class="thumbnail thumbnail-circle"/>
+        </div>
     </div>
-    <div class="ui-page">
 
-        <div class="ui-container margin-bottom">
-            <h1 class="text-center">ui-btn</h1>
-            <button class="ui-btn margin-bottom">default</button><br>
-            <button class="ui-btn ui-btn-assertive">assertive</button>
-            <button class="ui-btn ui-btn-positive">positive</button>
-            <button class="ui-btn ui-btn-balanced">balanced</button>
-        </div>
+    <h3 class="text-center">by Wangdahoo</h3>
 
-        <div class="ui-container margin-bottom">
-            <h1 class="text-center">ui-btn-block</h1>
-            <button class="ui-btn ui-btn-block">default</button>
-            <button class="ui-btn ui-btn-block ui-btn-assertive">assertive</button>
-            <button class="ui-btn ui-btn-block ui-btn-positive">positive</button>
-            <button class="ui-btn ui-btn-block ui-btn-balanced margin-bottom">balanced</button>
-        </div>
+    <div class="ui-divider"></div>
 
-        <div class="ui-container margin-bottom no-padding">
-            <h1 class="text-center">ui-btn-full</h1>
-            <button class="ui-btn ui-btn-full">default</button>
-            <button class="ui-btn ui-btn-full ui-btn-assertive">assertive</button>
-            <button class="ui-btn ui-btn-full ui-btn-positive">positive</button>
-            <button class="ui-btn ui-btn-full ui-btn-balanced">balanced</button>
-        </div>
+    <ul class="ui-list ui-list-ios thin-border-top-bottom margin-bottom">
+        <% _.each(items, function(item, i) { %>
+        <li data-route="<%= item.route %>">
+            <%= item.title %>
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
+        <% }) %>
+    </ul>
 
-        <div class="ui-container margin-bottom">
-            <h1 class="text-center">disabled</h1>
+    <h3 class="text-center">Version: <%= version %></h3>
 
-            <button class="ui-btn ui-btn-block" disabled>default</button>
-            <button class="ui-btn ui-btn-block ui-btn-assertive" disabled>assertive</button>
-            <button class="ui-btn ui-btn-block ui-btn-positive" disabled>positive</button>
-            <button class="ui-btn ui-btn-block ui-btn-balanced" disabled>balanced</button>
-        </div>
-
-    </div>
+    <div class="ui-divider-lg"></div>
 </script>
 
 <!-- Icon -->
 <script type="text/template" id="tpl-icon">
-    <div class="ui-nav">
-        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
-        <div class="title">Icon</div>
+    <h1 class="text-center">Based on Font-Awesome 4.2.0</h1>
+    <div class="ui-container padding light-bg thin-border-top-bottom">
+        <i class="ui-icon-angle-left"></i>
+        <i class="ui-icon-angle-right"></i>
+        <i class="ui-icon-angle-up"></i>
+        <i class="ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon-sm ui-icon-angle-left"></i>
+        <i class="ui-icon-sm ui-icon-angle-right"></i>
+        <i class="ui-icon-sm ui-icon-angle-up"></i>
+        <i class="ui-icon-sm ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon ui-icon-angle-left"></i>
+        <i class="ui-icon ui-icon-angle-right"></i>
+        <i class="ui-icon ui-icon-angle-up"></i>
+        <i class="ui-icon ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon-lg ui-icon-angle-left"></i>
+        <i class="ui-icon-lg ui-icon-angle-right"></i>
+        <i class="ui-icon-lg ui-icon-angle-up"></i>
+        <i class="ui-icon-lg ui-icon-angle-down"></i>
+
+        <br>
+
+        <i class="ui-icon ui-icon-spin ui-icon-circle-o-notch"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-refresh"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-spinner"></i>
+        <i class="ui-icon ui-icon-spin ui-icon-cog"></i>
+
+        <br>
+
+        <br>
+
+        <i class="ui-icon ui-icon-battery-0 dark-grey"></i>
+        <i class="ui-icon ui-icon-battery-1 assertive"></i>
+        <i class="ui-icon ui-icon-battery-2 balanced"></i>
+        <i class="ui-icon ui-icon-battery-3 balanced"></i>
+        <i class="ui-icon ui-icon-battery-4 balanced"></i>
     </div>
-    <div class="ui-page">
+</script>
 
-        <h1 class="text-center">Based on Font-Awesome 4.2.0</h1>
-        <div class="ui-container padding light-bg thin-border-top-bottom">
-            <i class="ui-icon-angle-left"></i>
-            <i class="ui-icon-angle-right"></i>
-            <i class="ui-icon-angle-up"></i>
-            <i class="ui-icon-angle-down"></i>
+<!-- Button-->
+<script type="text/template" id="tpl-button">
+    <div class="ui-container margin-bottom">
+        <h1 class="text-center">ui-btn</h1>
+        <button class="ui-btn margin-bottom">default</button><br>
+        <button class="ui-btn ui-btn-assertive">assertive</button>
+        <button class="ui-btn ui-btn-positive">positive</button>
+        <button class="ui-btn ui-btn-balanced">balanced</button>
+    </div>
 
-            <br>
+    <div class="ui-container margin-bottom">
+        <h1 class="text-center">ui-btn-block</h1>
+        <button class="ui-btn ui-btn-block">default</button>
+        <button class="ui-btn ui-btn-block ui-btn-assertive">assertive</button>
+        <button class="ui-btn ui-btn-block ui-btn-positive">positive</button>
+        <button class="ui-btn ui-btn-block ui-btn-balanced margin-bottom">balanced</button>
+    </div>
 
-            <i class="ui-icon-sm ui-icon-angle-left"></i>
-            <i class="ui-icon-sm ui-icon-angle-right"></i>
-            <i class="ui-icon-sm ui-icon-angle-up"></i>
-            <i class="ui-icon-sm ui-icon-angle-down"></i>
+    <div class="ui-container margin-bottom no-padding">
+        <h1 class="text-center">ui-btn-full</h1>
+        <button class="ui-btn ui-btn-full">default</button>
+        <button class="ui-btn ui-btn-full ui-btn-assertive">assertive</button>
+        <button class="ui-btn ui-btn-full ui-btn-positive">positive</button>
+        <button class="ui-btn ui-btn-full ui-btn-balanced">balanced</button>
+    </div>
 
-            <br>
+    <div class="ui-container margin-bottom">
+        <h1 class="text-center">disabled</h1>
 
-            <i class="ui-icon ui-icon-angle-left"></i>
-            <i class="ui-icon ui-icon-angle-right"></i>
-            <i class="ui-icon ui-icon-angle-up"></i>
-            <i class="ui-icon ui-icon-angle-down"></i>
-
-            <br>
-
-            <i class="ui-icon-lg ui-icon-angle-left"></i>
-            <i class="ui-icon-lg ui-icon-angle-right"></i>
-            <i class="ui-icon-lg ui-icon-angle-up"></i>
-            <i class="ui-icon-lg ui-icon-angle-down"></i>
-
-            <br>
-
-            <i class="ui-icon ui-icon-spin ui-icon-circle-o-notch"></i>
-            <i class="ui-icon ui-icon-spin ui-icon-refresh"></i>
-            <i class="ui-icon ui-icon-spin ui-icon-spinner"></i>
-            <i class="ui-icon ui-icon-spin ui-icon-cog"></i>
-
-            <br>
-
-            <br>
-
-            <i class="ui-icon ui-icon-battery-0 dark-grey"></i>
-            <i class="ui-icon ui-icon-battery-1 assertive"></i>
-            <i class="ui-icon ui-icon-battery-2 balanced"></i>
-            <i class="ui-icon ui-icon-battery-3 balanced"></i>
-            <i class="ui-icon ui-icon-battery-4 balanced"></i>
-        </div>
+        <button class="ui-btn ui-btn-block" disabled>default</button>
+        <button class="ui-btn ui-btn-block ui-btn-assertive" disabled>assertive</button>
+        <button class="ui-btn ui-btn-block ui-btn-positive" disabled>positive</button>
+        <button class="ui-btn ui-btn-block ui-btn-balanced" disabled>balanced</button>
     </div>
 </script>
 
 <!-- Grid -->
 <script type="text/template" id="tpl-grid">
-    <div class="ui-nav">
-        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
-        <div class="title">Grid</div>
+    <h1 class="text-center">.ui-width-1-1</h1>
+    <div class="ui-width-1-1 assertive-bg margin-bottom" style="height: 100px;"></div>
+
+    <h1 class="text-center">.ui-width-1-2</h1>
+
+    <div class="ui-grid ui-grid-collapse margin-bottom">
+        <div class="ui-width-1-2 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-2 positive-bg" style="height: 100px;"></div>
     </div>
-    <div class="ui-page">
 
-        <h1 class="text-center">.ui-width-1-1</h1>
-        <div class="ui-width-1-1 assertive-bg margin-bottom" style="height: 100px;"></div>
-
-        <h1 class="text-center">.ui-width-1-2</h1>
-
-        <div class="ui-grid ui-grid-collapse margin-bottom">
-            <div class="ui-width-1-2 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-2 positive-bg" style="height: 100px;"></div>
-        </div>
-
-        <h1 class="text-center">.ui-width-1-3</h1>
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-3 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-3 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-3 balanced-bg" style="height: 100px;"></div>
-        </div>
-
-        <h1 class="text-center">.ui-width-1-4</h1>
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-        </div>
-
-        <h1 class="text-center">.ui-width-1-5</h1>
-
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-5 positive-bg" style="height: 100px;"></div>
-        </div>
-
-        <h1 class="text-center">.ui-width-1-6</h1>
-
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-6 balanced-bg" style="height: 100px;"></div>
-        </div>
-
-        <h1 class="text-center">.ui-width-{n}-10</h1>
-
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-            <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
-        </div>
-
-        <div class="ui-grid margin-bottom">
-            <div class="ui-width-1-10 dark-bg" style="height: 100px;"></div>
-            <div class="ui-width-2-10 assertive-bg" style="height: 100px;"></div>
-            <div class="ui-width-3-10 light-bg" style="height: 100px;"></div>
-            <div class="ui-width-4-10 positive-bg" style="height: 100px;"></div>
-        </div>
-
-        <h1 class="text-center">Make a phone call</h1>
-        <div class="ui-container light-bg padding thin-border-top-bottom margin-bottom">
-            <div class="ui-grid">
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">1</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">2</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">3</button>
-                </div>
-            </div>
-            <div class="ui-grid">
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">4</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">5</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">6</button>
-                </div>
-            </div>
-            <div class="ui-grid">
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">7</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">8</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">9</button>
-                </div>
-            </div>
-            <div class="ui-grid" style="margin-bottom: 20px;">
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">#</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">0</button>
-                </div>
-                <div class="ui-width-1-3 text-center">
-                    <button class="ui-btn ui-btn-block">*</button>
-                </div>
-            </div>
-            <button class="ui-btn ui-btn-balanced ui-btn-block">
-                Call
-            </button>
-        </div>
-
-        <h1 class="text-center">Choose one to Login</h1>
-
-        <div class="ui-container light-bg thin-border-top-bottom margin-bottom">
-            <div class="ui-grid">
-                <div class="ui-width-1-3 padding text-center thin-border-right">
-                    <i class="ui-icon-lg ui-icon-weibo assertive"></i><br>
-                    微博
-                </div>
-                <div class="ui-width-1-3 padding text-center thin-border-right">
-                    <i class="ui-icon-lg ui-icon-qq positive"></i><br>
-                    QQ
-                </div>
-                <div class="ui-width-1-3 padding text-center">
-                    <i class="ui-icon-lg ui-icon-weixin balanced"></i><br>
-                    微信
-                </div>
-            </div>
-        </div>
-
-        <div class="ui-divider-lg"></div>
-
+    <h1 class="text-center">.ui-width-1-3</h1>
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-3 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-3 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-3 balanced-bg" style="height: 100px;"></div>
     </div>
+
+    <h1 class="text-center">.ui-width-1-4</h1>
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-4 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+    </div>
+
+    <h1 class="text-center">.ui-width-1-5</h1>
+
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-5 positive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-5 positive-bg" style="height: 100px;"></div>
+    </div>
+
+    <h1 class="text-center">.ui-width-1-6</h1>
+
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-6 balanced-bg" style="height: 100px;"></div>
+    </div>
+
+    <h1 class="text-center">.ui-width-{n}-10</h1>
+
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+        <div class="ui-width-1-10 assertive-bg" style="height: 100px; border-right: 1px solid #efeff4"></div>
+    </div>
+
+    <div class="ui-grid margin-bottom">
+        <div class="ui-width-1-10 dark-bg" style="height: 100px;"></div>
+        <div class="ui-width-2-10 assertive-bg" style="height: 100px;"></div>
+        <div class="ui-width-3-10 light-bg" style="height: 100px;"></div>
+        <div class="ui-width-4-10 positive-bg" style="height: 100px;"></div>
+    </div>
+
+    <h1 class="text-center">Make a phone call</h1>
+    <div class="ui-container light-bg padding thin-border-top-bottom margin-bottom">
+        <div class="ui-grid">
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">1</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">2</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">3</button>
+            </div>
+        </div>
+        <div class="ui-grid">
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">4</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">5</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">6</button>
+            </div>
+        </div>
+        <div class="ui-grid">
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">7</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">8</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">9</button>
+            </div>
+        </div>
+        <div class="ui-grid" style="margin-bottom: 20px;">
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">#</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">0</button>
+            </div>
+            <div class="ui-width-1-3 text-center">
+                <button class="ui-btn ui-btn-block">*</button>
+            </div>
+        </div>
+        <button class="ui-btn ui-btn-balanced ui-btn-block">
+            Call
+        </button>
+    </div>
+
+    <h1 class="text-center">Choose one to Login</h1>
+
+    <div class="ui-container light-bg thin-border-top-bottom margin-bottom">
+        <div class="ui-grid">
+            <div class="ui-width-1-3 padding text-center thin-border-right">
+                <i class="ui-icon-lg ui-icon-weibo assertive"></i><br>
+                微博
+            </div>
+            <div class="ui-width-1-3 padding text-center thin-border-right">
+                <i class="ui-icon-lg ui-icon-qq positive"></i><br>
+                QQ
+            </div>
+            <div class="ui-width-1-3 padding text-center">
+                <i class="ui-icon-lg ui-icon-weixin balanced"></i><br>
+                微信
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-divider-lg"></div>
 </script>
 
 <!-- List -->
 <script type="text/template" id="tpl-list">
+    <h1 class="text-center">.ui-list</h1>
+    <ul class="ui-list margin-bottom">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
 
-    <div class="ui-nav">
-        <button class="ui-btn btn-back"><i class="ui-icon ui-icon-angle-left"></i> </button>
-        <div class="title">List</div>
-    </div>
-    <div class="ui-page">
+    <h1 class="text-center">.ui-list-line</h1>
+    <ul class="ui-list ui-list-line light-bg margin-bottom">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
 
-        <h1 class="text-center">.ui-list</h1>
-        <ul class="ui-list margin-bottom">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-        </ul>
+    <h1 class="text-center">.ui-list-striped</h1>
+    <ul class="ui-list ui-list-striped margin-bottom">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+    </ul>
 
-        <h1 class="text-center">.ui-list-line</h1>
-        <ul class="ui-list ui-list-line light-bg margin-bottom">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-        </ul>
+    <h1 class="text-center">.ui-list-ios</h1>
+    <ul class="ui-list ui-list-ios margin-bottom">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
 
-        <h1 class="text-center">.ui-list-striped</h1>
-        <ul class="ui-list ui-list-striped margin-bottom">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-            <li>item 4</li>
-            <li>item 5</li>
-        </ul>
+    <h1 class="text-center">With Icon</h1>
+    <ul class="ui-list ui-list-ios margin-bottom">
+        <li>
+            Subject 1
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
 
-        <h1 class="text-center">.ui-list-ios</h1>
-        <ul class="ui-list ui-list-ios margin-bottom">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-        </ul>
+        <li>
+            Subject 2
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
 
-        <h1 class="text-center">With Icon</h1>
-        <ul class="ui-list ui-list-ios margin-bottom">
-            <li>
-                Subject 1
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
+        <li>
+            Subject 3
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
+    </ul>
 
-            <li>
-                Subject 2
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
+    <h1 class="text-center">Icon & Thin border</h1>
+    <ul class="ui-list ui-list-ios thin-border-top-bottom margin-bottom">
+        <li>
+            <i class="ui-icon ui-icon-shopping-cart assertive"></i>
+            <span style="margin-left: 10px">Cart</span>
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
 
-            <li>
-                Subject 3
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
-        </ul>
+        <li>
+            <i class="ui-icon ui-icon-cog positive" style="margin: 0 0 0 3px"></i>
+            <span style="margin-left: 10px">Setting</span>
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
 
-        <h1 class="text-center">Icon & Thin border</h1>
-        <ul class="ui-list ui-list-ios thin-border-top-bottom margin-bottom">
-            <li>
-                <i class="ui-icon ui-icon-shopping-cart assertive"></i>
-                <span style="margin-left: 10px">Cart</span>
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
+        <li>
+            <i class="ui-icon ui-icon-android balanced" style="margin: 0 0 0 4px"></i>
+            <span style="margin-left: 10px">Android</span>
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
+    </ul>
 
-            <li>
-                <i class="ui-icon ui-icon-cog positive" style="margin: 0 0 0 3px"></i>
-                <span style="margin-left: 10px">Setting</span>
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
+    <h1 class="text-center">Title & Description</h1>
+    <ul class="ui-list ui-list-ios margin-bottom">
+        <li>
+            <div class="title">Title</div>
+            <div class="description">description</div>
+        </li>
+        <li>
+            <div class="title">Title</div>
+            <div class="description">
+                sometimes the description will be long
+                sometimes the description will be long
+                sometimes the description will be long
+            </div>
+        </li>
+    </ul>
 
-            <li>
-                <i class="ui-icon ui-icon-android balanced" style="margin: 0 0 0 4px"></i>
-                <span style="margin-left: 10px">Android</span>
-                <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
-            </li>
-        </ul>
+    <h1 class="text-center">Line Avatar</h1>
+    <ul class="ui-list ui-list-line margin-bottom">
+        <li class="ui-list-item-avatar">
+            <img src="images/wangdahoo.jpg" />
+            <div class="title">Name</div>
+            <div class="description">introduction</div>
+        </li>
+        <li class="ui-list-item-avatar">
+            <img src="images/wangdahoo.jpg" />
+            <div class="title">Wangdahoo</div>
+            <div class="description">a dangerous one.</div>
+        </li>
+    </ul>
 
-        <h1 class="text-center">Title & Description</h1>
-        <ul class="ui-list ui-list-ios margin-bottom">
-            <li>
-                <div class="title">Title</div>
-                <div class="description">description</div>
-            </li>
-            <li>
-                <div class="title">Title</div>
-                <div class="description">
-                    sometimes the description will be long
-                    sometimes the description will be long
-                    sometimes the description will be long
-                </div>
-            </li>
-        </ul>
+    <h1 class="text-center">iOS Avatar</h1>
+    <ul class="ui-list ui-list-ios margin-bottom">
+        <li class="ui-list-item-avatar">
+            <img src="images/wangdahoo.jpg" />
+            <div class="title">Title</div>
+            <div class="description">description</div>
+        </li>
+        <li class="ui-list-item-avatar">
+            <img src="images/wangdahoo.jpg" />
+            <div class="title">王大虎</div>
+            <div class="description">危险人物</div>
+        </li>
+    </ul>
 
-        <h1 class="text-center">Line Avatar</h1>
-        <ul class="ui-list ui-list-line margin-bottom">
-            <li class="ui-list-item-avatar">
-                <img src="images/wangdahoo.jpg" />
-                <div class="title">Name</div>
-                <div class="description">introduction</div>
-            </li>
-            <li class="ui-list-item-avatar">
-                <img src="images/wangdahoo.jpg" />
-                <div class="title">Wangdahoo</div>
-                <div class="description">a dangerous one.</div>
-            </li>
-        </ul>
+    <h1 class="text-center">Line Thumbnail</h1>
+    <ul class="ui-list ui-list-line margin-bottom">
+        <li class="ui-list-item-thumbnail">
+            <img src="images/gun.jpg" />
+            <div class="title">枪</div>
+            <div class="description">在纽约105街区，一个小流氓将枪直指摄影家的镜头。“他只有11岁，却学会了一切狰狞。”克莱因回忆说：“当然，他手里是一把假枪，他正玩的也不过是美国孩子街头巷尾惯玩的游戏。但在我看，这一瞬间早已不再是儿童的游戏。”</div>
+        </li>
 
-        <h1 class="text-center">iOS Avatar</h1>
-        <ul class="ui-list ui-list-ios margin-bottom">
-            <li class="ui-list-item-avatar">
-                <img src="images/wangdahoo.jpg" />
-                <div class="title">Title</div>
-                <div class="description">description</div>
-            </li>
-            <li class="ui-list-item-avatar">
-                <img src="images/wangdahoo.jpg" />
-                <div class="title">王大虎</div>
-                <div class="description">危险人物</div>
-            </li>
-        </ul>
+        <li class="ui-list-item-thumbnail">
+            <img src="images/kiss.jpg" />
+            <div class="title">最著名的吻</div>
+            <div class="description">这是有关接吻的著名照片中最早的一张。面对这张在公共场合抢拍的照片，今天的人们可能会想到肖像权，隐私权这样的字眼，实际上它的确引发了一场肖像权的官司。但这并没能阻挡它在全世界流传。</div>
+        </li>
+    </ul>
 
-        <h1 class="text-center">Line Thumbnail</h1>
-        <ul class="ui-list ui-list-line margin-bottom">
-            <li class="ui-list-item-thumbnail">
-                <img src="images/gun.jpg" />
-                <div class="title">枪</div>
-                <div class="description">在纽约105街区，一个小流氓将枪直指摄影家的镜头。“他只有11岁，却学会了一切狰狞。”克莱因回忆说：“当然，他手里是一把假枪，他正玩的也不过是美国孩子街头巷尾惯玩的游戏。但在我看，这一瞬间早已不再是儿童的游戏。”</div>
-            </li>
-
-            <li class="ui-list-item-thumbnail">
-                <img src="images/kiss.jpg" />
-                <div class="title">最著名的吻</div>
-                <div class="description">这是有关接吻的著名照片中最早的一张。面对这张在公共场合抢拍的照片，今天的人们可能会想到肖像权，隐私权这样的字眼，实际上它的确引发了一场肖像权的官司。但这并没能阻挡它在全世界流传。</div>
-            </li>
-        </ul>
-
-        <h1 class="text-center">Line Thumbnail Large</h1>
-        <ul class="ui-list ui-list-line margin-bottom">
-            <li class="ui-list-item-thumbnail-lg">
-                <img src="images/pulp_fiction.jpg" />
-                <div class="title">Pulp Fiction</div>
-                <div class="description">《低俗小说》是由昆汀·塔伦蒂诺执导，布鲁斯·威利斯、乌玛·瑟曼、约翰·特拉沃塔、阿曼达·普拉莫、蒂姆·罗斯等主演的犯罪电影。影片由6个彼此独立而又紧密相连的故事所构成，6个故事都各自讲述了一个不同的事件，但他们却都有着共同的戏剧属性将它们紧密相连。该片于1994年10月14日在美国公映。</div>
-            </li>
-        </ul>
-
-    </div>
+    <h1 class="text-center">Line Thumbnail Large</h1>
+    <ul class="ui-list ui-list-line margin-bottom">
+        <li class="ui-list-item-thumbnail-lg">
+            <img src="images/pulp_fiction.jpg" />
+            <div class="title">Pulp Fiction</div>
+            <div class="description">《低俗小说》是由昆汀·塔伦蒂诺执导，布鲁斯·威利斯、乌玛·瑟曼、约翰·特拉沃塔、阿曼达·普拉莫、蒂姆·罗斯等主演的犯罪电影。影片由6个彼此独立而又紧密相连的故事所构成，6个故事都各自讲述了一个不同的事件，但他们却都有着共同的戏剧属性将它们紧密相连。该片于1994年10月14日在美国公映。</div>
+        </li>
+    </ul>
 </script>
 
-<!-- jQuery-->
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-
-<!-- Underscore -->
-<script src="../../bower_components/underscore/underscore-min.js"></script>
-
-<!-- Zui -->
-<script src="../../src/js/zui.js"></script>
-
-<script src="index.js"></script>
-
+<!-- Page Templates - End -->
 </body>
 </html>

@@ -19,7 +19,7 @@
   left: 50%;
   width: 87.5%;
   height: auto;
-  z-index: 2000;
+  z-index: $default-modal-z-index;
   visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -41,7 +41,7 @@
   visibility: hidden;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: $default-modal-overlay-z-index;
   opacity: 0;
   background: rgba($dark, 0.8);
   -webkit-transition: all 0.3s;
@@ -142,7 +142,6 @@
   margin-left: -20px;
   margin-top: 30px;
   // margin-top: -15px;
-  z-index: 10;
   -webkit-transform-origin: 50%;
   -moz-transform-origin: 50%;
   transform-origin: 50%;

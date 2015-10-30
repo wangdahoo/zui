@@ -43,26 +43,29 @@ module.exports = function(grunt) {
         concat: {
             bundle: {
                 src: [
-                    'bower_components/underscore.js',
+                    'bower_components/underscore/underscore.js',
                     'bower_components/jquery/dist/jquery.js',
-                    'src/zui.js'
+                    'src/js/zui.js',
+                    'bower_components/fastclick/lib/fastclick.js'
                 ],
-                dest: 'dist/zui.bundle.js'
+                dest: 'src/js/zui.bundle.js'
             }
         },
 
         uglify: {
             options: {
                 banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                '<%= grunt.template.today("yyyy-mm-dd") %> */',
-                beautify: true,
+                        ' *<%= grunt.template.today("yyyy-mm-dd") %> by Wangdahoo */',
                 compress: {
-                    drop_console: true
+                    drop_console: true,
+                    drop_debugger: true,
+                    dead_code: true
                 }
             },
             dist: {
                 files: {
-                    'dist/js/zui.min.js': ['src/js/zui.js']
+                    'dist/js/zui.min.js': ['src/js/zui.js'],
+                    'dist/js/zui.bundle.min.js': ['src/js/zui.bundle.js']
                 }
             }
         },

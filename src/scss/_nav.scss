@@ -5,9 +5,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: $default-nav-z-index;
   width: 100%;
-  height: $nav-default-height;
+  height: $nav-default-height !important;
   background-color: $nav-default-bg;
 
   .ui-nav-title, .title {

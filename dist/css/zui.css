@@ -6,6 +6,7 @@
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /* Color */
 /* Basic */
 /* Component Page */
@@ -13,6 +14,7 @@
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -2369,6 +2371,7 @@ h3 {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -2770,6 +2773,7 @@ h3 {
   line-height: 1; }
 
 .ui-page {
+  position: relative;
   width: 100%;
   height: 100%;
   padding: 55px 0 0 0;
@@ -2786,6 +2790,7 @@ h3 {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -3190,9 +3195,9 @@ h3 {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 1000;
   width: 100%;
-  height: 40px;
+  height: 40px !important;
   background-color: #231e1f; }
   .ui-nav .ui-nav-title, .ui-nav .title {
     margin: 0 60px;
@@ -3264,6 +3269,7 @@ h3 {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -4151,6 +4157,7 @@ input[type="button"].ui-btn-block {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 .ui-list {
   padding: 0;
   list-style: none;
@@ -4457,6 +4464,7 @@ input[type="button"].ui-btn-block {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 .ui-modal-perspective,
 .ui-modal-perspective body {
   height: 100%;
@@ -4474,7 +4482,7 @@ input[type="button"].ui-btn-block {
   left: 50%;
   width: 87.5%;
   height: auto;
-  z-index: 2000;
+  z-index: 3000;
   visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -4494,7 +4502,7 @@ input[type="button"].ui-btn-block {
   visibility: hidden;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 2000;
   opacity: 0;
   background: rgba(35, 30, 31, 0.8);
   -webkit-transition: all 0.3s;
@@ -4580,7 +4588,6 @@ input[type="button"].ui-btn-block {
   top: 0px;
   margin-left: -20px;
   margin-top: 30px;
-  z-index: 10;
   -webkit-transform-origin: 50%;
   -moz-transform-origin: 50%;
   transform-origin: 50%;
@@ -4635,6 +4642,7 @@ input[type="button"].ui-btn-block {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /* 细边框 */
 .thin-border {
   border-width: 1px;
@@ -4664,6 +4672,194 @@ input[type="button"].ui-btn-block {
   border-width: 0 1px 1px 0;
   border-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpifPrk8X8GIgALiJCSlmHEp+jZ0yf/mRiIBCNTIQssnAgpBAgwAJ8RC3E8yIGBAAAAAElFTkSuQmCC") 2 round; }
 
+.slide-in-left {
+  -webkit-animation: slideInLeft .2s ease;
+  animation: slideInLeft .2s ease; }
+
+.slide-in-right {
+  -webkit-animation: slideInRight .2s ease;
+  animation: slideInRight .2s ease; }
+
+.slide-out-left {
+  -webkit-animation: slideOutLeft .2s ease;
+  animation: slideOutLeft .2s ease; }
+
+.slide-out-right {
+  -webkit-animation: slideOutRight .2s ease;
+  animation: slideOutRight .2s ease; }
+
+/* Slide in up, for navbar */
+.slide-in-up {
+  -webkit-animation: slideInUp .2s ease;
+  animation: slideInUp .2s ease; }
+
+.fade-in {
+  -webkit-animation: fadeIn .6s linear;
+  animation: fadeIn .6s linear; }
+
+.fade-out {
+  -webkit-animation: fadeOut .6s linear;
+  animation: fadeOut .6s linear; }
+
+.fade-in-quick {
+  -webkit-animation: fadeIn .2s linear;
+  animation: fadeIn .2s linear; }
+
+.fade-out-quick {
+  -webkit-animation: fadeOut .2s linear;
+  animation: fadeOut .2s linear; }
+
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@-webkit-keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@keyframes slideOutLeft {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); } }
+@-webkit-keyframes slideOutLeft {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    -moz-transform: translate3d(-100%, 0, 0);
+    -ms-transform: translate3d(-100%, 0, 0);
+    -o-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0); } }
+@keyframes slideOutRight {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); } }
+@-webkit-keyframes slideOutRight {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  to {
+    -webkit-transform: translate3d(100%, 0, 0);
+    -moz-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    -o-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0); } }
+/* Slide in up, for navbar */
+@keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    -ms-transform: translate3d(0, -100%, 0);
+    -o-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@-webkit-keyframes slideInUp {
+  from {
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    -ms-transform: translate3d(0, -100%, 0);
+    -o-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0); }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
 /* Color */
 /* Basic */
 /* Component Page */
@@ -4671,6 +4867,7 @@ input[type="button"].ui-btn-block {
 /* Component Button */
 /* Component List */
 /* Thin Border */
+/* z-index */
 /*
   Container
 */

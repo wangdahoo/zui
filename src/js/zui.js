@@ -1,4 +1,5 @@
 ;(function() {
+
     var _global = this;
 
     /* UUID */
@@ -330,9 +331,7 @@
 
     /* Page */
     var Page = Base.extend({
-
-        constructor: function(context, options) {
-            this.context = context; // refer to an engine
+        constructor: function(options) {
 
             this.title = options.title || '';
             if (options.backButton != undefined && typeof options.backButton != 'function') {
@@ -344,7 +343,7 @@
             this.$el = $('#' + this.pageId);
 
             this.template = options.template; // underscore template
-            this.model = options.model;
+            this.model = options.model || {};
 
             this.transition = options.transition || 'slide';
 
@@ -352,48 +351,105 @@
         },
 
         _renderNavBar: function() {
-            // Clean up existed .ui-nav
-            $('.ui-nav').empty().remove();
-
-            // navbar template
-            var backButtonId;
-            var navBar ='<div class="ui-nav">';
-            if (typeof this.backButton == 'function') {
-                backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
-                navBar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
-            }
-            navBar += '<div class="title">' + this.title + '</div></div>';
-
-            // navbar render
-            $('body>.ui-nav:eq(0)').empty().remove();
-            $('body').prepend(navBar);
-
-            // navbar ready
-            if (typeof this.backButton != 'function') return false;
-
             var self = this;
-            $('#' + backButtonId).on('click', function(e) {
-                self.backButton(e);
-            });
+
+            var effectIn = 'fade-in-quick',
+                effectOut = 'fade-out-quick',
+                effectInterval = 200,
+
+                barEffectIn = 'slide-in-up';
+
+            var isStartPage = $('.ui-nav').size() == 0;
+            // fade out title & btn
+            // $('.ui-nav>.title, .ui-nav>.ui-btn').addClass(effectOut);
+
+            // the new one
+            _.delay(function() {
+                $('.ui-nav>.ui-btn').empty().remove();
+
+                // keep nav unique
+                $('.ui-nav:lt(0)').empty().remove();
+
+                if (isStartPage) {
+                    $('body').prepend('<div class="ui-nav"><div class="title"></div></div>');
+                }
+
+                // got the nav
+                var _nav = $('.ui-nav:eq(0)');
+
+                // back button
+                var backButtonId;
+                if (typeof self.backButton == 'function') {
+                    backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
+                    _nav.prepend('<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>');
+                    _nav.find('.ui-btn').css('opacity', 0);
+                }
+
+                _nav.find('.title').html(self.title).css('opacity', 0);
+
+                // render
+                var defer = $.Deferred();
+
+                if (isStartPage) {
+                    console.log('Start Page!');
+                    _nav.addClass(barEffectIn);
+                    _.delay(function() {
+                        defer.resolve();
+                    }, effectInterval);
+                } else {
+                    defer.resolve();
+                }
+
+                defer.done(function() {
+                    _nav
+                        .find('.title, .ui-btn')
+                        .addClass(effectIn)
+                        .css('opacity', 1);
+
+                    // back button click event handler
+                    if (typeof self.backButton != 'function') return false;
+
+                    $('#' + backButtonId).on('click', function(e) {
+                        self.backButton(e);
+                    });
+                })
+
+            }, effectInterval);
         },
 
-        render: function() {
+        render: function(transition) {
             this._renderNavBar();
-            this._renderPage();
+            this._renderPage(transition);
             return this;
         },
 
-        _renderPage: function() {
-            var oldPages = $('body>.ui-page');
-            if (oldPages.size() > 0) {
-                oldPages.fadeOut(500);
-                _.delay(function() {
-                    oldPages.empty().remove();
-                }, 500);
-            }
-            $('body').append('<div class="ui-page" id="' + this.pageId + '"></div>');
-            $('#' + this.pageId).html(_.template(this.template)(this.model));
-            if (typeof this.ready == 'function') this.ready();
+        _renderPage: function(transition) {
+
+            /* todo: issue
+            Replace slide effect with fade due to ios bug on css3 translate3d attr */
+
+            //var effectIn = 'slide-in-right',
+            //    effectOut = 'slide-out-left',
+            //    effectInterval = 100;
+            //if (transition == 'back') {
+            //    effectIn = 'slide-in-left';
+            //    effectOut = 'slide-out-right';
+            //    effectInterval = 100;
+            //}
+
+            var effectIn = 'fade-in-quick',
+                effectOut = 'fade-out-quick',
+                effectInterval = 100;
+            
+            $('body>.ui-page').addClass(effectOut);
+
+            var self = this;
+            _.delay(function() {
+                $('body>.ui-page').empty().remove();
+                $('body').append('<div class="ui-page ' + effectIn + '" id="' + self.pageId + '">' +
+                    _.template(self.template)(self.model) + '</div>');
+                if (typeof self.ready == 'function') self.ready();
+            }, effectInterval);
         },
 
         refresh: function() {
@@ -403,14 +459,94 @@
         }
     });
 
-    /* Zui Engine */
+    /* Loading */
+    function Loading() {
+        this.id = '';
+        this.duration = 1500;
+        this.max = 3*60*1000;
+    }
 
+    Loading.prototype.cleanup = function() {
+        $('body .ui-modal-loading, body .ui-modal-overlay')
+            .empty().remove();
+    };
+
+    Loading.prototype.show = function(options) {
+        var message, duration;
+
+        if (typeof arguments[0] == 'string') {
+            message = arguments[0];
+            duration = arguments[1] == -1 ? this.max : this.duration;
+        } else if (typeof arguments[0] == 'object') {
+            message = options.message;
+            if (options.duration == -1) {
+                duration = this.max;
+            } else {
+                duration = options.duration || this.duration;
+            }
+        } else {
+            throw new Error('Illegal Parameters');
+        }
+
+        var id = 'loading-' + uuid.v4().substr(0,8);
+
+        var content = '<div id="' + id + '" class="ui-modal ui-modal-loading">' +
+            '<div class="ui-modal-content">' +
+            '<div class="preload-wrapper">' +
+            '<div class="preload"></div>' +
+            '</div><p>' + message + '</p></div>' +
+            '</div>' +
+            '<div class="ui-modal-overlay"></div>';
+
+        // do clean up
+        var self = this;
+        self.cleanup();
+        $('body').append(content);
+
+        // do show
+        var o = $('#' + id);
+        o.addClass('ui-modal-show');
+        _.delay(function() {
+            o.removeClass('ui-modal-show');
+            _.delay(function() {
+                self.cleanup();
+            }, 300);
+        }, duration + 300);
+
+        return this.id = id;
+    };
+
+    Loading.prototype.hide = function() {
+        var self = this;
+        $('#' + self.id).removeClass('ui-modal-show');
+        _.delay(function() {
+            self.cleanup();
+        }, 300);
+
+        return this.id = '';
+    };
+
+    var zuiLoading = new Loading();
+
+    /* Engine */
     var HISTORY_SIZE = 10;
 
     var Engine = Base.extend({
-        constructor: function(options) {
+        constructor: function(settings) {
+
+        },
+
+        _isReady: false,
+
+        history: [],
+
+        timers: [],
+
+        init: function(options) {
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route
+            this._isReady = true;
+            return this;
         },
 
         GET: (function() {
@@ -426,15 +562,44 @@
             return params;
         })(),
 
-        history: [],
+        navigate: function() {
+            if (!this._isReady) {
+                throw new Error('Uninitialized Engine');
+            }
 
-        navigate: function(routeName, routeParams) {
-            if (!this.routes[routeName]) {
-                throw new Error('Undefined Route');
+            var routeName, routeParams, transition;
+            /* 解析参数 */
+            if (arguments.length >= 1 && typeof arguments[0] == 'string') {
+                routeName = arguments[0];
+                if (!this.routes[routeName]) {
+                    throw new Error('Undefined Route');
+                }
+
+                if (arguments.length == 1) {
+                    console.info('navigate(), 1 个参数, routeName only');
+                    transition = 'forward';
+                } else if (arguments.length == 2 && typeof arguments[1] == 'object') {
+                    console.info('navigate(), 2 个参数, routeName & routeParams');
+                    routeParams = arguments[1];
+                } else if (arguments.length == 2 && typeof arguments[1] == 'string') {
+                    console.info('navigate(), 2 个参数, routeName & transition');
+                    transition = arguments[1];
+                } else if (arguments.length == 2 && typeof arguments[1] == 'object' && typeof arguments[2] == 'string') {
+                    console.info('navigate(), 3 个参数, routeName, routeParams & transition');
+                    routeParams = arguments[1];
+                    transition = arguments[2];
+                } else {
+                    console.info('Arguments =>', arguments);
+                    throw new Error('Illegal Arguments');
+                }
+            } else {
+                console.info('Arguments =>', arguments);
+                throw new Error('Illegal Arguments');
             }
 
             this.clearTimers();
-            this.routes[routeName](routeParams);
+            if (transition != 'back') transition = 'forward'; // 修正transition的值
+            this.routes[routeName].render(transition);
 
             /* 更新state history */
             var history = this.history;
@@ -450,11 +615,17 @@
             console.info('CURRENT STATE => ' + _.last(history).route, JSON.stringify(_.last(history).params));
         },
 
-        start: function(routeParams) {
-            this.navigate(this.defaultRoute, routeParams);
+        start: function() {
+            if (!this._isReady) {
+                throw new Error('Uninitialized Engine');
+            }
+            this.navigate(this.defaultRoute, arguments[0] || {});
         },
 
         back: function() {
+            if (!this._isReady) {
+                throw new Error('Uninitialized Engine');
+            }
             if (this.history.length >= 2) {
                 this.clearTimers();
                 this.history.pop();
@@ -463,9 +634,14 @@
             }
         },
 
-        /* Timers */
+        getCurrentRoute: function() {
+            if (!this._isReady) {
+                throw new Error('Uninitialized Engine');
+            }
+            return _.last(this.history);
+        },
 
-        timers: [],
+        /* Timers */
 
         addTimer: function (key, tid) {
             var timers = this.timers;
@@ -510,13 +686,22 @@
         }
     });
 
-    /* Publish API */
     var zui = {
         Engine: function (options) {
             return new Engine(options);
         },
         Page: function(options) {
             return new Page(options);
+        },
+
+        showLoading: function(options) {
+            return zuiLoading.show(options);
+        },
+        hideLoading: function() {
+            zuiLoading.hide();
+        },
+        LOADING_ID: function() {
+            return zuiLoading.id;
         }
     };
 

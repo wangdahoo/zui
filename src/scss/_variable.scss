@@ -62,3 +62,8 @@ $list-item-default-padding-horizontal:          15px;
 
 /* Thin Border */
 $border-image:                                  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpifPrk8X8GIgALiJCSlmHEp+jZ0yf/mRiIBCNTIQssnAgpBAgwAJ8RC3E8yIGBAAAAAElFTkSuQmCC') 2 round;
+
+/* z-index */
+$default-nav-z-index:                           1000;
+$default-modal-overlay-z-index:                 2000;
+$default-modal-z-index:                         3000;
