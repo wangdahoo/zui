@@ -28,10 +28,11 @@ $(function() {
      *      });
      *
      *      // todo: Deprecated for translate3d issue on some versions of ios Safari.
-     *      // app.navigate('master', 'forward')   // navigate to a page with routeName & transition.
+     *      // app
+     *          .navigate('master', 'forward')  // navigate to a page with routeName & transition.
      *
      *
-     *      // app.navigate('master', {            // navigate to a page with routeName, routeParams & transition.
+     *      // app.navigate('master', {         // navigate to a page with routeName, routeParams & transition.
      *      //     id: 123,
      *      //     msg: 'May I have a cigarette?'
      *      // }, 'back');
