@@ -11111,70 +11111,31 @@ return jQuery;
         },
 
         _renderNavBar: function() {
+            // keep nav unique & clear
+            $('.ui-nav:lt(0)').empty().remove();
+            $('.ui-nav>.ui-btn').empty().remove();
+
             var self = this;
-
-            var effectIn = 'fade-in-quick',
-                effectOut = 'fade-out-quick',
-                effectInterval = 200,
-
-                barEffectIn = 'slide-in-up';
-
             var isStartPage = $('.ui-nav').size() == 0;
-            // fade out title & btn
-            // $('.ui-nav>.title, .ui-nav>.ui-btn').addClass(effectOut);
 
-            // the new one
-            _.delay(function() {
-                $('.ui-nav>.ui-btn').empty().remove();
+            if (isStartPage) {
+                $('body').prepend('<div class="ui-nav slide-in-down"><div class="title"></div></div>');
+            }
 
-                // keep nav unique
-                $('.ui-nav:lt(0)').empty().remove();
+            // got the nav
+            var _nav = $('.ui-nav:eq(0)');
 
-                if (isStartPage) {
-                    $('body').prepend('<div class="ui-nav"><div class="title"></div></div>');
-                }
+            // back button
+            var backButtonId;
+            if (typeof self.backButton == 'function') {
+                backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
+                _nav.prepend('<button id="' + backButtonId +'" class="ui-btn fade-in-quick"><i class="ui-icon ui-icon-angle-left"></i> </button>');
+                $('#' + backButtonId).on('click', function(e) {
+                    self.backButton(e);
+                });
+            }
+            _nav.find('.title').html(self.title);
 
-                // got the nav
-                var _nav = $('.ui-nav:eq(0)');
-
-                // back button
-                var backButtonId;
-                if (typeof self.backButton == 'function') {
-                    backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
-                    _nav.prepend('<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>');
-                    _nav.find('.ui-btn').css('opacity', 0);
-                }
-
-                _nav.find('.title').html(self.title).css('opacity', 0);
-
-                // render
-                var defer = $.Deferred();
-
-                if (isStartPage) {
-                    console.log('Start Page!');
-                    _nav.addClass(barEffectIn);
-                    _.delay(function() {
-                        defer.resolve();
-                    }, effectInterval);
-                } else {
-                    defer.resolve();
-                }
-
-                defer.done(function() {
-                    _nav
-                        .find('.title, .ui-btn')
-                        .addClass(effectIn)
-                        .css('opacity', 1);
-
-                    // back button click event handler
-                    if (typeof self.backButton != 'function') return false;
-
-                    $('#' + backButtonId).on('click', function(e) {
-                        self.backButton(e);
-                    });
-                })
-
-            }, effectInterval);
         },
 
         render: function(transition) {
@@ -11188,19 +11149,15 @@ return jQuery;
             /* todo: issue
             Replace slide effect with fade due to ios bug on css3 translate3d attr */
 
-            //var effectIn = 'slide-in-right',
-            //    effectOut = 'slide-out-left',
-            //    effectInterval = 100;
-            //if (transition == 'back') {
-            //    effectIn = 'slide-in-left';
-            //    effectOut = 'slide-out-right';
-            //    effectInterval = 100;
-            //}
+            var effectIn = 'fade-in-left',
+                effectOut = 'fade-out-left',
+                effectInterval = 150;
 
-            var effectIn = 'fade-in-quick',
-                effectOut = 'fade-out-quick',
-                effectInterval = 100;
-            
+            if (transition == 'back') {
+                effectIn = 'fade-in-right';
+                effectOut = 'fade-out-right';
+            }
+
             $('body>.ui-page').addClass(effectOut);
 
             var self = this;
@@ -11344,7 +11301,7 @@ return jQuery;
                 } else if (arguments.length == 2 && typeof arguments[1] == 'string') {
                     console.info('navigate(), 2 个参数, routeName & transition');
                     transition = arguments[1];
-                } else if (arguments.length == 2 && typeof arguments[1] == 'object' && typeof arguments[2] == 'string') {
+                } else if (arguments.length == 3 && typeof arguments[1] == 'object' && typeof arguments[2] == 'string') {
                     console.info('navigate(), 3 个参数, routeName, routeParams & transition');
                     routeParams = arguments[1];
                     transition = arguments[2];
@@ -11390,7 +11347,7 @@ return jQuery;
                 this.clearTimers();
                 this.history.pop();
                 var state = _.last(this.history);
-                this.navigate(state.route, state.params);
+                this.navigate(state.route, state.params, 'back');
             }
         },
 
