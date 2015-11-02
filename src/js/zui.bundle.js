@@ -11098,6 +11098,7 @@ return jQuery;
                 throw new Error('backButton should be a function!');
             }
             this.backButton = options.backButton;
+            this.theme = options.theme || 'default';
 
             this.pageId = 'page-' + uuid.v4().substr(0, 8);
             this.$el = $('#' + this.pageId);
@@ -11105,7 +11106,7 @@ return jQuery;
             this.template = options.template; // underscore template
             this.model = options.model || {};
 
-            this.transition = options.transition || 'slide';
+            this.transition = options.transition || 'forward';
 
             this.ready = options.ready;
         },
@@ -11119,7 +11120,8 @@ return jQuery;
             var isStartPage = $('.ui-nav').size() == 0;
 
             if (isStartPage) {
-                $('body').prepend('<div class="ui-nav slide-in-down"><div class="title"></div></div>');
+                self.theme = typeof self.theme == 'string' ? ('ui-nav-' + self.theme) : '';
+                $('body').prepend('<div class="ui-nav ' + self.theme + ' slide-in-down"><div class="title"></div></div>');
             }
 
             // got the nav
@@ -11221,14 +11223,16 @@ return jQuery;
         $('body').append(content);
 
         // do show
-        var o = $('#' + id);
-        o.addClass('ui-modal-show');
         _.delay(function() {
-            o.removeClass('ui-modal-show');
+            var o = $('#' + id);
+            o.addClass('ui-modal-show');
             _.delay(function() {
-                self.cleanup();
-            }, 300);
-        }, duration + 300);
+                o.removeClass('ui-modal-show');
+                _.delay(function() {
+                    self.cleanup();
+                }, 300);
+            }, duration + 300);
+        }, 50);
 
         return this.id = id;
     };
@@ -11244,6 +11248,188 @@ return jQuery;
     };
 
     var zuiLoading = new Loading();
+
+    /* Toast */
+
+    function Toast() {
+        this.id = '';
+    }
+
+    Toast.prototype.cleanup = function() {
+        $('body .ui-modal-loading, body .ui-modal-overlay')
+            .empty().remove();
+    };
+
+    Toast.prototype.show = function(message, duration) {
+        message = message || '';
+        duration = duration || 1500;
+
+        var id = 'toast-' + uuid.v4().substr(0,8);
+
+        var content = '<div id="' + id + '" class="ui-modal ui-modal-loading">' +
+            '<div class="ui-modal-content">' +
+            '<p>' + message + '</p>' +
+            '</div></div>' +
+            '<div class="ui-modal-overlay"></div>';
+
+        // do clean up
+        var self = this;
+        self.cleanup();
+        $('body').append(content);
+
+        // do show
+        _.delay(function() {
+            var o = $('#' + id);
+            o.addClass('ui-modal-show');
+
+            _.delay(function() {
+                o.removeClass('ui-modal-show');
+                _.delay(function() {
+                    self.cleanup();
+                }, 300);
+            }, duration + 300);
+
+        }, 50);
+
+    };
+
+    var zuiToast = new Toast();
+
+    /* Dialog */
+
+    function Dialog() {
+        this.id = '';
+    }
+
+    Dialog.prototype.cleanup = function() {
+        $('body .ui-modal-dialog, body .ui-modal-overlay')
+            .empty().remove();
+    };
+
+    Dialog.prototype.alert = function(options) {
+        var message, title = '提示', btnOkTheme = 'assertive', btnOkText = '确定';
+
+        var id = 'alert-' + uuid.v4().substr(0,8);
+        var btnOkId = 'btn-ok-' + uuid.v4().substr(0, 8);
+
+        var callback = function(e) {
+            $('#' + id).removeClass('ui-modal-show');
+            _.delay(function() {
+                self.cleanup();
+            }, 300);
+        };
+
+        if (typeof arguments[0] == 'string') {
+            message = arguments[0] || '';
+        } else if (typeof arguments[0] == 'object') {
+            message = options.message || '';
+            if (options.title) title = options.title;
+            if (options.btnOkTheme != 'assertive') btnOkTheme = 'positive';
+            if (options.btnOkText) btnOkText = options.btnOkText;
+        } else {
+            throw new Error('Illegal Parameters');
+        }
+
+        var content = '<div id="' + id + '" class="ui-modal ui-modal-dialog">' +
+            '<div class="ui-modal-content">' +
+            '<h2>' + title + '</h2>' +
+            '<p>' + message +'</p>' +
+            '<button id="' + btnOkId + '" class="ui-btn ui-btn-block ui-btn-' + btnOkTheme + '">' + btnOkText + '</button>' +
+            '</div></div>' +
+            '<div class="ui-modal-overlay"></div>';
+
+        // do clean up
+        var self = this;
+        self.cleanup();
+
+        // append to document body
+        $('body').append(content);
+
+        // do show
+        _.delay(function() {
+            var o = $('#' + id);
+            o.addClass('ui-modal-show');
+        }, 50);
+
+        // btnOk click event
+        $('#' + btnOkId).on('click', callback);
+
+        return this.id = id;
+    };
+
+    Dialog.prototype.confirm = function(options) {
+        var message, title = '提示',
+            btnOkTheme = 'assertive',
+            btnOkText = '确定',
+            btnCancelText = '取消';
+
+        var id = 'alert-' + uuid.v4().substr(0,8);
+        var btnOkId = 'btn-ok-' + uuid.v4().substr(0, 8);
+        var btnCancelId = 'btn-cancel-' + uuid.v4().substr(0, 8);
+
+        var defer = $.Deferred();
+
+        if (typeof arguments[0] == 'string') {
+            message = arguments[0] || '';
+        } else if (typeof arguments[0] == 'object') {
+            message = options.message || '';
+            if (options.title) title = options.title;
+            if (options.btnOkTheme != 'assertive') btnOkTheme = 'positive';
+            if (options.btnOkText) btnOkText = options.btnOkText;
+            if (options.btnCancelText) btnCancelText = options.btnCancelText;
+        } else {
+            throw new Error('Illegal Parameters');
+        }
+
+        var content = '<div id="' + id + '" class="ui-modal ui-modal-dialog">' +
+            '<div class="ui-modal-content">' +
+            '<h2>' + title + '</h2>' +
+            '<p>' + message +'</p>' +
+            '<div class="ui-flex">' +
+            '<div class="ui-width-1-2" style="padding-right: 5px;">' +
+                '<button id="' + btnOkId + '" class="ui-btn ui-btn-block ui-btn-' + btnOkTheme + '">' + btnOkText + '</button>' +
+            '</div>' +
+            '<div class="ui-width-1-2" style="padding-left: 5px;">' +
+                '<button id="' + btnCancelId + '" class="ui-btn ui-btn-block">' + btnCancelText + '</button>' +
+            '</div>' +
+            '</div></div></div>' +
+            '<div class="ui-modal-overlay"></div>';
+
+        // do clean up
+        var self = this;
+        self.cleanup();
+
+        // append to document body
+        $('body').append(content);
+
+        // do show
+        _.delay(function() {
+            var o = $('#' + id);
+            o.addClass('ui-modal-show');
+        }, 50);
+
+        // btnOk & btnCancel click event
+
+        function callback(result) {
+            $('#' + id).removeClass('ui-modal-show');
+            _.delay(function() {
+                self.cleanup();
+                defer.resolve(result);
+            }, 300);
+        }
+
+        $('#' + btnOkId).on('click', function() {
+            callback(true);
+        });
+
+        $('#' + btnCancelId).on('click', function() {
+            callback(false);
+        });
+
+        return defer.promise();
+    };
+
+    var zuiDialog = new Dialog();
 
     /* Engine */
     var HISTORY_SIZE = 10;
@@ -11411,6 +11597,8 @@ return jQuery;
             return new Page(options);
         },
 
+
+        /* Loading */
         showLoading: function(options) {
             return zuiLoading.show(options);
         },
@@ -11419,6 +11607,24 @@ return jQuery;
         },
         LOADING_ID: function() {
             return zuiLoading.id;
+        },
+
+        /* Toast */
+        toast: function(message, duration) {
+            zuiToast.show(message, duration);
+        },
+
+        /* Dialog: alert & confirm */
+        alert: function(options) {
+            zuiDialog.alert(options);
+        },
+
+        confirm: function(options) {
+            return zuiDialog.confirm(options);
+        },
+
+        DIALOG_ID: function() {
+            return zuiDialog.id;
         }
     };
 

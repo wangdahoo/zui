@@ -20,7 +20,7 @@ $(function() {
      *          defaultRoute: 'master'
      *      });
      *
-     *      app.navigate('master');             // navigate to a page which by route 'master'.
+     *      app.navigate('master');             // navigate to a page by route 'master'.
      *
      *      app.navigate('master', {            // navigate to a page with routeName & routeParams
      *          id: 123,
@@ -129,7 +129,9 @@ $(function() {
                 { title: 'Button', route: 'button' },
                 { title: 'List', route: 'list' },
                 { title: 'Grid', route: 'grid' },
-                { title: 'Loading', route: 'loading' }
+                { title: 'Loading', route: 'loading' },
+                { title: 'Toast', route: 'toast' },
+                { title: 'Dialog', route: 'dialog' }
             ]
         },
         ready: function() {
@@ -140,6 +142,8 @@ $(function() {
                 var route = $(e.target).data('route');
                 if (route == 'loading') {
                     zui.showLoading('加载中');
+                } else if (route == 'toast') {
+                    zui.toast('Hey, there ~ ;)');
                 } else {
                     app.navigate(route);
                 }
@@ -180,6 +184,38 @@ $(function() {
         template: $('#tpl-grid').html()
     });
 
+    pages.dialog = zui.Page({
+        title: 'Dialog',
+        backButton: function(e) {
+            app.back();
+        },
+        template: $('#tpl-dialog').html(),
+
+        ready: function() {
+
+            $('#btn-show-alert').on('click', function() {
+                zui.alert('This is a alert dialog.');
+            });
+
+            $('#btn-show-confirm').on('click', function() {
+                zui
+                    .confirm('This is an confirm dialog with promise object.')
+                    .done(function(result) {
+                        if (result) {
+                            //console.log('Ok clicked.');
+
+                            zui.toast('Ok clicked.');
+                        } else {
+                            //console.log('Cancel clicked.');
+
+                            zui.toast('Cancel clicked.');
+                        }
+                    });
+            });
+
+        }
+    });
+
     /* Step 3
      * Setup app engine's routes with pages, and then call engine's start() method. */
 
@@ -189,7 +225,8 @@ $(function() {
             icon: pages.icon,
             button: pages.button,
             list: pages.list,
-            grid: pages.grid
+            grid: pages.grid,
+            dialog: pages.dialog
         },
 
         defaultRoute: 'home'

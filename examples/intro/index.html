@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../dist/css/zui.min.css"/>
 
     <!-- jQuery, Underscore Before Zui -->
-    <!--<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!--    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../../bower_components/underscore/underscore-min.js"></script>
     <script src="../../src/js/zui.js"></script>
     <script src="../../bower_components/fastclick/lib/fastclick.js"></script>-->
@@ -29,40 +29,6 @@
     <script src="index.js"></script>
 </head>
 <body>
-
-<script type="text/template" id="tpl-alert">
-    <div id="alert" class="ui-modal ui-modal-dialog">
-        <div class="ui-modal-content">
-            <div class="title">Title</div>
-            <p><%= msg %></p>
-            <button class="ui-btn ui-btn-block ui-btn-positive btn-ok">
-                Ok
-            </button>
-        </div>
-    </div>
-</script>
-
-<script type="text/template" id="tpl-confirm">
-    <div id="confirm" class="ui-modal ui-modal-dialog">
-        <div class="ui-modal-content">
-            <div class="title">Title</div>
-            <p><%= msg %></p>
-
-            <div class="ui-flex">
-                <div class="ui-width-1-2" style="padding-right: 5px;">
-                    <button class="ui-btn ui-btn-block ui-btn-positive btn-ok" data-result="Ok">
-                        Ok
-                    </button>
-                </div>
-                <div class="ui-width-1-2" style="padding-left: 5px;">
-                    <button class="ui-btn ui-btn-block btn-cancel" data-result="Cancel">
-                        Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
 
 <!-- Page Templates - Start -->
 
@@ -457,6 +423,19 @@
             <img src="images/pulp_fiction.jpg" />
             <div class="title">Pulp Fiction</div>
             <div class="description">《低俗小说》是由昆汀·塔伦蒂诺执导，布鲁斯·威利斯、乌玛·瑟曼、约翰·特拉沃塔、阿曼达·普拉莫、蒂姆·罗斯等主演的犯罪电影。影片由6个彼此独立而又紧密相连的故事所构成，6个故事都各自讲述了一个不同的事件，但他们却都有着共同的戏剧属性将它们紧密相连。该片于1994年10月14日在美国公映。</div>
+        </li>
+    </ul>
+</script>
+
+<script type="text/template" id="tpl-dialog">
+    <ul class="ui-list ui-list-ios">
+        <li id="btn-show-alert">
+            Alert
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
+        </li>
+        <li id="btn-show-confirm">
+            Confirm
+            <i class="ui-icon ui-icon-angle-right pull-right dark-grey"></i>
         </li>
     </ul>
 </script>

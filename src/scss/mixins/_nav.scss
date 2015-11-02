@@ -1,0 +1,12 @@
+@mixin nav-variant($color, $background) {
+  background-color: $background;
+
+  .ui-nav-title, .title {
+    color: $color;
+  }
+
+  .ui-btn {
+    color: $color;
+    @include button-variant($color, $background, $background);
+  }
+}

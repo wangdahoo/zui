@@ -1,12 +1,13 @@
 @import "_base";
 @import "mixins/_button";
+@import "mixins/_nav";
 
 .ui-nav {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: $default-nav-z-index;
   width: 100%;
+  z-index: $default-nav-z-index;
   height: $nav-default-height !important;
   background-color: $nav-default-bg;
 
@@ -40,6 +41,27 @@
       float: right;
       text-align: right;
     }
+  }
+
+  /* Nav Variant */
+  &.ui-nav-stable {
+    @include nav-variant($dark, $stable);
+  }
+
+  &.ui-nav-light {
+    @include nav-variant($dark, $light);
+  }
+
+  &.ui-nav-positive {
+    @include nav-variant($light, $positive);
+  }
+
+  &.ui-nav-assertive {
+    @include nav-variant($light, $assertive);
+  }
+
+  &.ui-nav-balanced {
+    @include nav-variant($light, $balanced);
   }
 
 }
