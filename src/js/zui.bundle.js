@@ -11109,12 +11109,23 @@ return jQuery;
             this.pageId = 'page-' + uuid.v4().substr(0, 8);
             this.$el = $('#' + this.pageId);
 
-            this.template = options.template; // underscore template
+            this.template = options.template; // underscore template or plain string.
             this.model = options.model || {};
 
             this.transition = options.transition || 'forward';
 
             this.ready = options.ready;
+
+            if (options.init && typeof options.init == 'function') {
+                this.init = options.init;
+
+                // call page init method
+                this.init();
+            }
+        },
+
+        init: function() {
+            console.info('dummy function for page init');
         },
 
         render: function(transition) {
@@ -11155,8 +11166,10 @@ return jQuery;
             navbar += '<div class="title">' + this.title + '</div></div>';
 
             // create dom
+            var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
+
             body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
-                _.template(self.template)(self.model) + '</div>');
+                pageContent + '</div>');
 
             // backButton Click Event Handler
             if (typeof this.backButton == 'function') {
@@ -11200,9 +11213,11 @@ return jQuery;
             var self = this;
 
             // create dom
+            var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
+
             page
                 .empty()
-                .append(_.template(self.template)(self.model));
+                .append(pageContent);
 
             // page ready
             if (typeof this.ready == 'function') this.ready();
@@ -11486,15 +11501,16 @@ return jQuery;
 
         init: function(options) {
 
-            if (SETTINGS.pageTransition == 'ios') {
-                /* ios9 mobile safari bug with scale3d & translate3d */
-                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-                    document.querySelector('meta[name=viewport]').setAttribute(
-                        'content',
-                        'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
-                    );
-                }
-            }
+            /* todo: Not a good enough solution!!! */
+            ///* ios9 mobile safari bug with scale3d & translate3d */
+            //if (SETTINGS.pageTransition == 'ios') {
+            //    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+            //        document.querySelector('meta[name=viewport]').setAttribute(
+            //            'content',
+            //            'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
+            //        );
+            //    }
+            //}
 
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route
@@ -11552,6 +11568,8 @@ return jQuery;
 
             this.clearTimers();
             if (transition != 'back') transition = 'forward'; // 修正transition的值
+
+            // render page
             this.routes[routeName].render(transition);
 
             /* 更新state history */

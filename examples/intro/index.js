@@ -124,7 +124,7 @@ $(function() {
     var pages = {};
     pages.home = zui.Page({
         title: 'UI Demo',
-        template: $('#tpl-home').html(),
+        template: _.template($('#tpl-home').html()),
         model: {
             version: '1.0.0',
             items: [
