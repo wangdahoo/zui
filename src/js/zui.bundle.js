@@ -11089,6 +11089,9 @@ return jQuery;
         }
     });
 
+    /* Global Settings */
+    var SETTINGS = {};
+
     /* Page */
     var Page = Base.extend({
         constructor: function(options) {
@@ -11111,69 +11114,90 @@ return jQuery;
             this.ready = options.ready;
         },
 
-        _renderNavBar: function() {
-            // keep nav unique & clear
-            $('.ui-nav:lt(0)').empty().remove();
-            $('.ui-nav>.ui-btn').empty().remove();
-
+        render: function(transition) {
             var self = this;
-            var isStartPage = $('.ui-nav').size() == 0;
+            var body = $('body');
 
-            if (isStartPage) {
-                self.theme = typeof self.theme == 'string' ? ('ui-nav-' + self.theme) : '';
-                $('body').prepend('<div class="ui-nav ' + self.theme + ' slide-in-down"><div class="title"></div></div>');
+            var effectIn = 'page-fade-in',
+                effectOut = 'page-fade-out',
+                effectInterval = 400;
+
+            if (SETTINGS.pageTransition == 'default') {
+                effectIn = 'page-fade-in';
+                effectOut = 'page-fade-out';
+            } else if (SETTINGS.pageTransition == 'ios') {
+                if (transition == 'forward') {
+                    effectIn = 'page-from-right-to-center';
+                    effectOut = 'page-from-center-to-left';
+                }
+
+                if (transition == 'back') {
+                    effectIn = 'page-from-left-to-center';
+                    effectOut = 'page-from-center-to-right';
+                }
             }
 
-            // got the nav
-            var _nav = $('.ui-nav:eq(0)');
+            // clear current page's effect class
+            body.find('.ui-page')
+                .removeClass('page-from-right-to-center')
+                .removeClass('page-from-left-to-center');
 
-            // back button
+            // setup navbar
+            var navbar = '<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '">';
             var backButtonId;
-            if (typeof self.backButton == 'function') {
+            if (typeof this.backButton == 'function') {
                 backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
-                _nav.prepend('<button id="' + backButtonId +'" class="ui-btn fade-in-quick"><i class="ui-icon ui-icon-angle-left"></i> </button>');
+                navbar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
+            }
+            navbar += '<p class="title">' + this.title + '</p></div>';
+
+            // create dom
+            body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
+                _.template(self.template)(self.model) + '</div>');
+
+            // backButton Click Event Handler
+            if (typeof this.backButton == 'function') {
                 $('#' + backButtonId).on('click', function(e) {
                     self.backButton(e);
                 });
             }
-            _nav.find('.title').html(self.title);
 
-        },
+            // Transition
+            if ($('body>.ui-page').size() < 2) { // Dummy Page
+                body.prepend('<div class="ui-page"></div>');
+            }
 
-        render: function(transition) {
-            this._renderNavBar();
-            this._renderPage(transition);
+            if ($('body>.ui-nav').size() < 2) { // Dummy Nav
+                body.prepend('<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '"><p class="title"></p></div>');
+            }
+
+            var last = $('body>.ui-page:eq(0), body>.ui-nav:eq(0)');
+            var current = $('body>.ui-page:eq(1), body>.ui-nav:eq(1)');
+
+            last.addClass(effectOut);
+            current.addClass(effectIn);
+
+            _.delay(function() {
+                last.empty().remove();
+                if (typeof self.ready == 'function') self.ready();
+            }, effectInterval);
+
             return this;
         },
 
-        _renderPage: function(transition) {
-
-            /* todo: issue
-            Replace slide effect with fade due to ios bug on css3 translate3d attr */
-
-            var effectIn = 'fade-in-left',
-                effectOut = 'fade-out-left',
-                effectInterval = 150;
-
-            if (transition == 'back') {
-                effectIn = 'fade-in-right';
-                effectOut = 'fade-out-right';
-            }
-
-            $('body>.ui-page').addClass(effectOut);
-
-            var self = this;
-            _.delay(function() {
-                $('body>.ui-page').empty().remove();
-                $('body').append('<div class="ui-page ' + effectIn + '" id="' + self.pageId + '">' +
-                    _.template(self.template)(self.model) + '</div>');
-                if (typeof self.ready == 'function') self.ready();
-            }, effectInterval);
-        },
-
         refresh: function() {
-            $('#' + this.pageId).empty();
-            this._renderPage();
+            // cleanup
+            var page = $('#' + this.pageId);
+            var self = this;
+
+            // create dom
+            page
+                .empty()
+                .append(_.template(self.template)(self.model));
+
+            // page ready
+            if (typeof this.ready == 'function') this.ready();
+
             return this;
         }
     });
@@ -11436,7 +11460,12 @@ return jQuery;
 
     var Engine = Base.extend({
         constructor: function(settings) {
-
+            var DEFAULT_SETTINGS = {
+                pageTransition: 'default'
+            };
+            if (arguments[0] && typeof arguments[0] == 'object') {
+                SETTINGS = _.extend(DEFAULT_SETTINGS, settings);
+            }
         },
 
         _isReady: false,
@@ -11446,6 +11475,17 @@ return jQuery;
         timers: [],
 
         init: function(options) {
+
+            if (SETTINGS.pageTransition == 'ios') {
+                /* ios9 mobile safari bug with scale3d & translate3d */
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                    document.querySelector('meta[name=viewport]').setAttribute(
+                        'content',
+                        'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
+                    );
+                }
+            }
+
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route
             this._isReady = true;
@@ -11590,6 +11630,10 @@ return jQuery;
     });
 
     var zui = {
+        Settings: function() {
+            return SETTINGS;
+        },
+
         Engine: function (options) {
             return new Engine(options);
         },

@@ -11,9 +11,13 @@
   height: $nav-default-height !important;
   background-color: $nav-default-bg;
 
+  box-shadow: 0 0 1px #999;
+
   .ui-nav-title, .title {
-    margin: 0 60px;
-    text-align: center;
+    margin: 0 15%;
+    width: 70%;
+    height: $nav-default-height;
+    text-align: center !important;
     font-size: $nav-default-title-font-size;
     line-height: $nav-default-height;
     color: $nav-default-color;
@@ -23,12 +27,14 @@
     color: $nav-default-color;
     background: none;
     border: none;
-    width: 60px;
+    width: 15%;
     height: $nav-default-height;
     line-height: $nav-default-height;
     font-size: 16px;
     font-weight: 300;
     padding: 0 15px;
+
+    border-radius: 0px;
 
     @include button-variant($nav-default-color, $nav-default-bg, $nav-default-bg);
 

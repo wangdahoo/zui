@@ -24,8 +24,8 @@ $page-default-bg:                               #efeff4; // iOS bg
 
 /* Component Nav */
 $nav-default-height:                            40px;
-$nav-default-bg:                                $dark;
-$nav-default-color:                             #fff;
+$nav-default-bg:                                $light;
+$nav-default-color:                             $dark;
 $nav-default-title-font-size:                   18px;
 
 /* Component Button */
@@ -65,6 +65,6 @@ $list-item-default-padding-horizontal:          15px;
 $border-image:                                  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACxJREFUeNpifPrk8X8GIgALiJCSlmHEp+jZ0yf/mRiIBCNTIQssnAgpBAgwAJ8RC3E8yIGBAAAAAElFTkSuQmCC') 2 round;
 
 /* z-index */
-$default-nav-z-index:                           1000;
-$default-modal-overlay-z-index:                 2000;
-$default-modal-z-index:                         3000;
+$default-nav-z-index:                           3000;
+$default-modal-overlay-z-index:                 4000;
+$default-modal-z-index:                         5000;

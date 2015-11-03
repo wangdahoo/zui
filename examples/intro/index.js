@@ -112,7 +112,9 @@ $(function() {
     /* Step 1
      * Create an app engine */
 
-    var app = zui.Engine();
+    var app = zui.Engine({
+        pageTransition: 'default'
+    });
 
     /*
      * Step 2
@@ -143,7 +145,7 @@ $(function() {
                 if (route == 'loading') {
                     zui.showLoading('加载中');
                 } else if (route == 'toast') {
-                    zui.toast('Hey, there ~ ;)');
+                    zui.toast('Hi, there ~ ;)');
                 } else {
                     app.navigate(route);
                 }

@@ -99,10 +99,6 @@ module.exports = function(grunt) {
             css: {
                 files: 'src/scss/*.scss',
                 tasks: ['sass', 'cssmin']
-            },
-            js: {
-                files: 'src/js/zui.js',
-                tasks: ['uglify']
             }
         }
     });
