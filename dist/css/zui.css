@@ -3328,8 +3328,12 @@ h3 {
   box-shadow: 0 0 1px #999;
   /* Nav Variant */ }
   .ui-nav .ui-nav-title, .ui-nav .title {
-    margin: 0 15%;
-    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    float: left;
+    min-width: 220px;
+    width: calc(100% - 100px);
     height: 40px;
     text-align: center !important;
     font-size: 18px;
@@ -3339,7 +3343,7 @@ h3 {
     color: #231e1f;
     background: none;
     border: none;
-    width: 15%;
+    width: 48px;
     height: 40px;
     line-height: 40px;
     font-size: 16px;
@@ -3438,6 +3442,52 @@ h3 {
         .ui-nav.ui-nav-stable .ui-btn.disabled, .ui-nav.ui-nav-stable .ui-btn.disabled:hover, .ui-nav.ui-nav-stable .ui-btn.disabled:focus, .ui-nav.ui-nav-stable .ui-btn.disabled.focus, .ui-nav.ui-nav-stable .ui-btn.disabled:active, .ui-nav.ui-nav-stable .ui-btn.disabled.active, .ui-nav.ui-nav-stable .ui-btn[disabled], .ui-nav.ui-nav-stable .ui-btn[disabled]:hover, .ui-nav.ui-nav-stable .ui-btn[disabled]:focus, .ui-nav.ui-nav-stable .ui-btn[disabled].focus, .ui-nav.ui-nav-stable .ui-btn[disabled]:active, .ui-nav.ui-nav-stable .ui-btn[disabled].active, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn:hover, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn:focus, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn.focus, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn:active, fieldset[disabled] .ui-nav.ui-nav-stable .ui-btn.active {
           background-color: #f4f4f4;
           border-color: #f4f4f4; }
+  .ui-nav.ui-nav-dark {
+    background-color: #231e1f; }
+    .ui-nav.ui-nav-dark .ui-nav-title, .ui-nav.ui-nav-dark .title {
+      color: #fff; }
+    .ui-nav.ui-nav-dark .ui-btn {
+      color: #fff;
+      color: #fff;
+      background-color: #231e1f;
+      border-color: #231e1f; }
+      .ui-nav.ui-nav-dark .ui-btn:focus, .ui-nav.ui-nav-dark .ui-btn.focus {
+        /* Remove outline & shadow */
+        outline: none;
+        outline-offset: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        background-color: #080607;
+        border-color: black; }
+      .ui-nav.ui-nav-dark .ui-btn:hover {
+        /* Remove Shadow */
+        text-decoration: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        background-color: #080607;
+        border-color: #020202; }
+      .ui-nav.ui-nav-dark .ui-btn:active, .ui-nav.ui-nav-dark .ui-btn.active {
+        color: #fff;
+        background-color: #080607;
+        border-color: #020202; }
+        .ui-nav.ui-nav-dark .ui-btn:active:hover, .ui-nav.ui-nav-dark .ui-btn:active:focus, .ui-nav.ui-nav-dark .ui-btn:active.focus, .ui-nav.ui-nav-dark .ui-btn.active:hover, .ui-nav.ui-nav-dark .ui-btn.active:focus, .ui-nav.ui-nav-dark .ui-btn.active.focus {
+          /* Remove outline & shadow */
+          outline: 0;
+          background-image: none;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          color: #fff;
+          background-color: black;
+          border-color: black; }
+      .ui-nav.ui-nav-dark .ui-btn:active, .ui-nav.ui-nav-dark .ui-btn.active {
+        background-image: none; }
+      .ui-nav.ui-nav-dark .ui-btn.disabled, .ui-nav.ui-nav-dark .ui-btn[disabled], fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn {
+        opacity: .65; }
+        .ui-nav.ui-nav-dark .ui-btn.disabled, .ui-nav.ui-nav-dark .ui-btn.disabled:hover, .ui-nav.ui-nav-dark .ui-btn.disabled:focus, .ui-nav.ui-nav-dark .ui-btn.disabled.focus, .ui-nav.ui-nav-dark .ui-btn.disabled:active, .ui-nav.ui-nav-dark .ui-btn.disabled.active, .ui-nav.ui-nav-dark .ui-btn[disabled], .ui-nav.ui-nav-dark .ui-btn[disabled]:hover, .ui-nav.ui-nav-dark .ui-btn[disabled]:focus, .ui-nav.ui-nav-dark .ui-btn[disabled].focus, .ui-nav.ui-nav-dark .ui-btn[disabled]:active, .ui-nav.ui-nav-dark .ui-btn[disabled].active, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn:hover, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn:focus, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn.focus, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn:active, fieldset[disabled] .ui-nav.ui-nav-dark .ui-btn.active {
+          background-color: #231e1f;
+          border-color: #231e1f; }
   .ui-nav.ui-nav-light {
     background-color: #fff; }
     .ui-nav.ui-nav-light .ui-nav-title, .ui-nav.ui-nav-light .title {

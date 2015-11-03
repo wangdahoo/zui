@@ -11092,6 +11092,9 @@ return jQuery;
     /* Global Settings */
     var SETTINGS = {};
 
+    // pageTransition
+    // pageTheme
+
     /* Page */
     var Page = Base.extend({
         constructor: function(options) {
@@ -11101,7 +11104,7 @@ return jQuery;
                 throw new Error('backButton should be a function!');
             }
             this.backButton = options.backButton;
-            this.theme = options.theme || 'default';
+            this.theme = options.theme || SETTINGS.pageTheme;
 
             this.pageId = 'page-' + uuid.v4().substr(0, 8);
             this.$el = $('#' + this.pageId);
@@ -11149,7 +11152,7 @@ return jQuery;
                 backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
                 navbar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
             }
-            navbar += '<p class="title">' + this.title + '</p></div>';
+            navbar += '<div class="title">' + this.title + '</div></div>';
 
             // create dom
             body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
@@ -11168,17 +11171,23 @@ return jQuery;
             }
 
             if ($('body>.ui-nav').size() < 2) { // Dummy Nav
-                body.prepend('<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '"><p class="title"></p></div>');
+                body.prepend('<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '"><div class="title"></div></div>');
             }
 
-            var last = $('body>.ui-page:eq(0), body>.ui-nav:eq(0)');
-            var current = $('body>.ui-page:eq(1), body>.ui-nav:eq(1)');
+            var lastPage = $('body>.ui-page:eq(0)');
+            var currentPage = $('body>.ui-page:eq(1)');
+            var lastNav = $('body>.ui-nav:eq(0)');
+            var currentNav = $('body>.ui-nav:eq(1)');
 
-            last.addClass(effectOut);
-            current.addClass(effectIn);
+            lastPage.addClass(effectOut);
+            lastNav.find('.title, .ui-btn').addClass('page-fade-out');
+            currentPage.addClass(effectIn);
+            currentNav.find('.title, .ui-btn').addClass('page-fade-in');
 
             _.delay(function() {
-                last.empty().remove();
+                lastPage.empty().remove();
+                lastNav.empty().remove();
+
                 if (typeof self.ready == 'function') self.ready();
             }, effectInterval);
 
@@ -11461,7 +11470,8 @@ return jQuery;
     var Engine = Base.extend({
         constructor: function(settings) {
             var DEFAULT_SETTINGS = {
-                pageTransition: 'default'
+                pageTransition: 'default',
+                pageTheme: 'light'
             };
             if (arguments[0] && typeof arguments[0] == 'object') {
                 SETTINGS = _.extend(DEFAULT_SETTINGS, settings);

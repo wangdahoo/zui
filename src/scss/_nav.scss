@@ -10,12 +10,14 @@
   z-index: $default-nav-z-index;
   height: $nav-default-height !important;
   background-color: $nav-default-bg;
-
   box-shadow: 0 0 1px #999;
-
   .ui-nav-title, .title {
-    margin: 0 15%;
-    width: 70%;
+    position: absolute;
+    top: 0;
+    left: 50px;
+    float: left;
+    min-width: 220px;
+    width: calc(100% - 100px);
     height: $nav-default-height;
     text-align: center !important;
     font-size: $nav-default-title-font-size;
@@ -27,7 +29,7 @@
     color: $nav-default-color;
     background: none;
     border: none;
-    width: 15%;
+    width: 48px;
     height: $nav-default-height;
     line-height: $nav-default-height;
     font-size: 16px;
@@ -52,6 +54,10 @@
   /* Nav Variant */
   &.ui-nav-stable {
     @include nav-variant($dark, $stable);
+  }
+
+  &.ui-nav-dark {
+    @include nav-variant($light, $dark);
   }
 
   &.ui-nav-light {

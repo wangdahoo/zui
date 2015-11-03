@@ -113,7 +113,8 @@ $(function() {
      * Create an app engine */
 
     var app = zui.Engine({
-        pageTransition: 'default'
+        pageTransition: 'ios',
+        pageTheme: 'light'
     });
 
     /*
@@ -156,6 +157,7 @@ $(function() {
 
     pages.icon = zui.Page({
         title: 'Icon',
+        theme: 'positive',
         backButton: function(e) {
             app.navigate('home', 'back');
         },
@@ -164,6 +166,7 @@ $(function() {
 
     pages.button = zui.Page({
         title: 'Button',
+        theme: 'assertive',
         backButton: function(e) {
             app.navigate('home', 'back');
         },
@@ -172,6 +175,7 @@ $(function() {
 
     pages.list = zui.Page({
         title: 'List',
+        theme: 'balanced',
         backButton: function(e) {
             app.navigate('home', 'back');
         },
