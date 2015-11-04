@@ -11657,7 +11657,7 @@ return jQuery;
                 SETTINGS = _.extend(DEFAULT_SETTINGS, settings);
             }
 
-            // 初始化的时候清空ROUTE_HISTORY
+            // 初始化清空 Route History
             ROUTE_HISTORY = [];
         },
 
@@ -11735,11 +11735,6 @@ return jQuery;
             this.clearTimers();
             if (transition != 'back') transition = 'forward'; // 修正transition的值
 
-            // do page init
-            this.routes[routeName].init();
-            // render page
-            this.routes[routeName].render(transition);
-
             /* 更新route history */
             if (ROUTE_HISTORY.length > ROUTE_HISTORY_SIZE) {
                 ROUTE_HISTORY.splice(0, 1);
@@ -11748,9 +11743,14 @@ return jQuery;
                 route: routeName,
                 params: routeParams || {}
             });
-            console.info('Push State Ok');
+            console.info('Push Route Ok');
             console.info('HISTORY =>', ROUTE_HISTORY);
             console.info('CURRENT STATE => ' + _.last(ROUTE_HISTORY).route, JSON.stringify(_.last(ROUTE_HISTORY).params));
+
+            // do page init
+            this.routes[routeName].init();
+            // render page
+            this.routes[routeName].render(transition);
 
             return this.routes[routeName];
         },
