@@ -359,10 +359,9 @@
 
             if (options.init && typeof options.init == 'function') {
                 this.init = options.init;
-
-                // call page init method
-                this.init();
             }
+
+            this.init();
         },
 
         init: function() {
@@ -479,9 +478,9 @@
 
             if (options.init && typeof options.init == 'function') {
                 this.init = options.init;
-                // call init method
-                this.init();
             }
+
+            this.init();
         },
 
         init: function() {
@@ -885,7 +884,8 @@
     var zuiStorage = Storage();
 
     /* Engine */
-    var HISTORY_SIZE = 10;
+    var ROUTE_HISTORY_SIZE = 10;
+    var ROUTE_HISTORY = [];
 
     var Engine = Base.extend({
         constructor: function(settings) {
@@ -896,11 +896,12 @@
             if (arguments[0] && typeof arguments[0] == 'object') {
                 SETTINGS = _.extend(DEFAULT_SETTINGS, settings);
             }
+
+            // 初始化的时候清空ROUTE_HISTORY
+            ROUTE_HISTORY = [];
         },
 
         _isReady: false,
-
-        history: [],
 
         timers: [],
 
@@ -974,21 +975,24 @@
             this.clearTimers();
             if (transition != 'back') transition = 'forward'; // 修正transition的值
 
+            // do page init
+            this.routes[routeName].init();
             // render page
             this.routes[routeName].render(transition);
 
-            /* 更新state history */
-            var history = this.history;
-            if (history.length > HISTORY_SIZE) {
-                history.splice(0, 1);
+            /* 更新route history */
+            if (ROUTE_HISTORY.length > ROUTE_HISTORY_SIZE) {
+                ROUTE_HISTORY.splice(0, 1);
             }
-            history.push({
+            ROUTE_HISTORY.push({
                 route: routeName,
                 params: routeParams || {}
             });
             console.info('Push State Ok');
-            console.info('HISTORY =>', history);
-            console.info('CURRENT STATE => ' + _.last(history).route, JSON.stringify(_.last(history).params));
+            console.info('HISTORY =>', ROUTE_HISTORY);
+            console.info('CURRENT STATE => ' + _.last(ROUTE_HISTORY).route, JSON.stringify(_.last(ROUTE_HISTORY).params));
+
+            return this.routes[routeName];
         },
 
         start: function() {
@@ -1002,10 +1006,10 @@
             if (!this._isReady) {
                 throw new Error('Uninitialized Engine');
             }
-            if (this.history.length >= 2) {
+            if (ROUTE_HISTORY.length >= 2) {
                 this.clearTimers();
-                this.history.pop();
-                var state = _.last(this.history);
+                ROUTE_HISTORY.pop();
+                var state = _.last(ROUTE_HISTORY);
                 this.navigate(state.route, state.params, 'back');
             }
         },
@@ -1014,7 +1018,7 @@
             if (!this._isReady) {
                 throw new Error('Uninitialized Engine');
             }
-            return _.last(this.history);
+            return _.last(ROUTE_HISTORY);
         },
 
         /* Timers */
@@ -1063,8 +1067,17 @@
     });
 
     var zui = {
+
         Settings: function() {
             return SETTINGS;
+        },
+
+        routeHistory: function() {
+            return ROUTE_HISTORY;
+        },
+
+        getCurrentRoute: function() {
+            return _.last(ROUTE_HISTORY);
         },
 
         Engine: function (options) {
