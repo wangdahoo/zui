@@ -1095,12 +1095,18 @@
             return SETTINGS;
         },
 
+        // State APIs
+
         state: function() {
             return STATE.route;
         },
 
         stateParams: function() {
             return STATE.params;
+        },
+
+        getStateParam: function(key) {
+            return STATE.params[key];
         },
 
         Engine: function (options) {
