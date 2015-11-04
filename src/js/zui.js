@@ -354,7 +354,8 @@
 
             this.transition = options.transition || 'forward';
 
-            this.ready = options.ready;
+            if (options.ready && typeof options.ready == 'function')
+                this.ready = options.ready;
 
             if (options.init && typeof options.init == 'function') {
                 this.init = options.init;
@@ -450,7 +451,6 @@
         refresh: function() {
             // cleanup
             var page = $('#' + this.pageId);
-            var self = this;
 
             // create dom
             var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
@@ -463,6 +463,34 @@
             if (typeof this.ready == 'function') this.ready();
 
             return this;
+        }
+    });
+
+    /* View */
+    var View = Base.extend({
+        constructor: function(options) {
+            this.el = options.el;
+            this.$el = $(options.el);
+            this.template = option.template; // underscore template
+            this.model = options.model || {};
+
+            if (options.ready && typeof options.ready == 'function')
+                this.ready = options.ready;
+
+            if (options.init && typeof options.init == 'function') {
+                this.init = options.init;
+                // call init method
+                this.init();
+            }
+        },
+
+        init: function() {
+            console.info('dummy function for view init');
+        },
+
+        render: function() {
+            this.$el.html(this.template(this.model));
+            if (this.ready) this.ready();
         }
     });
 
@@ -718,6 +746,143 @@
     };
 
     var zuiDialog = new Dialog();
+    
+    
+    /* Storage */
+    
+    function Stub() {
+        var ms = {};
+
+        function getItem (key) {
+            return key in ms ? ms[key] : null;
+        }
+
+        function setItem (key, value) {
+            ms[key] = value;
+            return true;
+        }
+
+        function removeItem (key) {
+            var found = key in ms;
+            if (found) {
+                return delete ms[key];
+            }
+            return false;
+        }
+
+        function clear () {
+            ms = {};
+            return true;
+        }
+
+        return {
+            getItem: getItem,
+            setItem: setItem,
+            removeItem: removeItem,
+            clear: clear
+        };
+    }
+    
+    function Tracking() {
+        var listeners = {};
+        var listening = false;
+
+        function listen () {
+            if (window.addEventListener) {
+                window.addEventListener('storage', change, false);
+            } else if (window.attachEvent) {
+                window.attachEvent('onstorage', change);
+            } else {
+                window.onstorage = change;
+            }
+        }
+
+        function change (e) {
+            if (!e) {
+                e = window.event;
+            }
+            var all = listeners[e.key];
+            if (all) {
+                all.forEach(fire);
+            }
+
+            function fire (listener) {
+                listener(JSON.parse(e.newValue), JSON.parse(e.oldValue), e.url || e.uri);
+            }
+        }
+
+        function on (key, fn) {
+            if (listeners[key]) {
+                listeners[key].push(fn);
+            } else {
+                listeners[key] = [fn];
+            }
+            if (listening === false) {
+                listen();
+            }
+        }
+
+        function off (key, fn) {
+            var ns = listeners[key];
+            if (ns.length > 1) {
+                ns.splice(ns.indexOf(fn), 1);
+            } else {
+                listeners[key] = [];
+            }
+        }
+
+        return {
+            on: on,
+            off: off
+        };
+    }
+
+    function Storage() {
+
+        var stub = Stub();
+        var tracking = Tracking();
+
+        var ls = 'localStorage' in window && window.localStorage ? window.localStorage : stub;
+
+        function Accessor (key, value) {
+            if (arguments.length === 1) {
+                return get(key);
+            }
+            return set(key, value);
+        }
+
+        function get (key) {
+            return JSON.parse(ls.getItem(key));
+        }
+
+        function set (key, value) {
+            try {
+                ls.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function remove (key) {
+            return ls.removeItem(key);
+        }
+
+        function clear () {
+            return ls.clear();
+        }
+
+        Accessor.set = set;
+        Accessor.get = get;
+        Accessor.remove = remove;
+        Accessor.clear = clear;
+        Accessor.on = tracking.on;
+        Accessor.off = tracking.off;
+
+        return Accessor;
+    }
+
+    var zuiStorage = Storage();
 
     /* Engine */
     var HISTORY_SIZE = 10;
@@ -743,14 +908,14 @@
 
             /* todo: Not a good enough solution!!! */
             ///* ios9 mobile safari bug with scale3d & translate3d */
-            //if (SETTINGS.pageTransition == 'ios') {
-            //    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-            //        document.querySelector('meta[name=viewport]').setAttribute(
-            //            'content',
-            //            'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
-            //        );
-            //    }
-            //}
+            if (SETTINGS.pageTransition == 'ios') {
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                    document.querySelector('meta[name=viewport]').setAttribute(
+                        'content',
+                        'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
+                    );
+                }
+            }
 
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route
@@ -909,6 +1074,12 @@
             return new Page(options);
         },
 
+        View: function(options) {
+            return new View(options);
+        },
+
+        /* Local Storage */
+        storage: zuiStorage,
 
         /* Loading */
         showLoading: function(options) {
