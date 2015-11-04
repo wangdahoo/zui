@@ -11114,18 +11114,28 @@ return jQuery;
 
             this.transition = options.transition || 'forward';
 
-            if (options.ready && typeof options.ready == 'function')
-                this.ready = options.ready;
-
             if (options.init && typeof options.init == 'function') {
                 this.init = options.init;
             }
+
+            if (options.prepare && typeof options.prepare == 'function') {
+                this.prepare = options.prepare;
+            }
+
+            if (options.ready && typeof options.ready == 'function')
+                this.ready = options.ready;
 
             this.init();
         },
 
         init: function() {
             console.info('dummy function for page init');
+        },
+
+        prepare: false, // prepare model
+
+        ready: function() {
+            console.info('dummy function for page ready');
         },
 
         render: function(transition) {
@@ -11166,10 +11176,13 @@ return jQuery;
             navbar += '<div class="title">' + this.title + '</div></div>';
 
             // create dom
-            var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
-
-            body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
-                pageContent + '</div>');
+            if (this.prepare) {
+                body.append(navbar + '<div class="ui-page" id="' + self.pageId + '"></div>');
+            } else {
+                var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
+                body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
+                    pageContent + '</div>');
+            }
 
             // backButton Click Event Handler
             if (typeof this.backButton == 'function') {
@@ -11201,12 +11214,19 @@ return jQuery;
                 lastPage.empty().remove();
                 lastNav.empty().remove();
 
-                if (typeof self.ready == 'function') self.ready();
+                if (self.prepare) {
+                    self.prepare();
+                } else {
+                    // default, call ready()
+                    self.ready();
+                }
+
             }, effectInterval);
 
             return this;
         },
 
+        // refresh page with new model
         refresh: function() {
             // cleanup
             var page = $('#' + this.pageId);
@@ -11218,8 +11238,8 @@ return jQuery;
                 .empty()
                 .append(pageContent);
 
-            // page ready
-            if (typeof this.ready == 'function') this.ready();
+            // ready()
+            this.ready();
 
             return this;
         }
@@ -11645,7 +11665,9 @@ return jQuery;
 
     /* Engine */
     var ROUTE_HISTORY_SIZE = 10;
-    var ROUTE_HISTORY = [];
+
+    // State 状态服务
+    var STATE = {};
 
     var Engine = Base.extend({
         constructor: function(settings) {
@@ -11656,12 +11678,11 @@ return jQuery;
             if (arguments[0] && typeof arguments[0] == 'object') {
                 SETTINGS = _.extend(DEFAULT_SETTINGS, settings);
             }
-
-            // 初始化清空 Route History
-            ROUTE_HISTORY = [];
         },
 
         _isReady: false,
+
+        history: [],
 
         timers: [],
 
@@ -11735,22 +11756,25 @@ return jQuery;
             this.clearTimers();
             if (transition != 'back') transition = 'forward'; // 修正transition的值
 
+            // 更新 State
+            STATE.route = routeName;
+            STATE.params = routeParams || {};
+
+            // render page
+            this.routes[routeName].render(transition);
+
             /* 更新route history */
-            if (ROUTE_HISTORY.length > ROUTE_HISTORY_SIZE) {
-                ROUTE_HISTORY.splice(0, 1);
+            var history = this.history;
+            if (history.length > ROUTE_HISTORY_SIZE) {
+                history.splice(0, 1);
             }
-            ROUTE_HISTORY.push({
+            history.push({
                 route: routeName,
                 params: routeParams || {}
             });
             console.info('Push Route Ok');
-            console.info('HISTORY =>', ROUTE_HISTORY);
-            console.info('CURRENT STATE => ' + _.last(ROUTE_HISTORY).route, JSON.stringify(_.last(ROUTE_HISTORY).params));
-
-            // do page init
-            this.routes[routeName].init();
-            // render page
-            this.routes[routeName].render(transition);
+            console.info('HISTORY =>', history);
+            console.info('CURRENT STATE => ' + _.last(history).route, JSON.stringify(_.last(history).params));
 
             return this.routes[routeName];
         },
@@ -11766,10 +11790,10 @@ return jQuery;
             if (!this._isReady) {
                 throw new Error('Uninitialized Engine');
             }
-            if (ROUTE_HISTORY.length >= 2) {
+            if (this.history.length >= 2) {
                 this.clearTimers();
-                ROUTE_HISTORY.pop();
-                var state = _.last(ROUTE_HISTORY);
+                this.history.pop();
+                var state = _.last(this.history);
                 this.navigate(state.route, state.params, 'back');
             }
         },
@@ -11778,11 +11802,10 @@ return jQuery;
             if (!this._isReady) {
                 throw new Error('Uninitialized Engine');
             }
-            return _.last(ROUTE_HISTORY);
+            return _.last(this.history);
         },
 
         /* Timers */
-
         addTimer: function (key, tid) {
             var timers = this.timers;
             timers.push({
@@ -11832,12 +11855,12 @@ return jQuery;
             return SETTINGS;
         },
 
-        routeHistory: function() {
-            return ROUTE_HISTORY;
+        state: function() {
+            return STATE.route;
         },
 
-        getCurrentRoute: function() {
-            return _.last(ROUTE_HISTORY);
+        stateParams: function() {
+            return STATE.params;
         },
 
         Engine: function (options) {
