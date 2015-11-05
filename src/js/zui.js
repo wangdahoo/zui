@@ -442,7 +442,7 @@
                 body.prepend('<div class="ui-page"></div>');
             }
 
-            if ($('body>.ui-nav').size() < 2) { // Dummy Nav
+            if (!this.hideNavBar && $('body>.ui-nav').size() < 2) { // Dummy Nav
                 body.prepend('<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '"><div class="title"></div></div>');
             }
 
