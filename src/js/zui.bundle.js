@@ -11125,6 +11125,9 @@ return jQuery;
             if (options.ready && typeof options.ready == 'function')
                 this.ready = options.ready;
 
+            /* hide navbar */
+            this.hideNavBar = !(options.hideNavBar == undefined);
+
             this.init();
         },
 
@@ -11167,13 +11170,16 @@ return jQuery;
                 .removeClass('page-from-left-to-center');
 
             // setup navbar
-            var navbar = '<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '">';
-            var backButtonId;
-            if (typeof this.backButton == 'function') {
-                backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
-                navbar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
+            var navbar = '';
+            if (!this.hideNavBar) { // 是否渲染navbar
+                navbar = '<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '">';
+                var backButtonId;
+                if (typeof this.backButton == 'function') {
+                    backButtonId = 'btn-back-' + uuid.v4().substr(0, 8);
+                    navbar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
+                }
+                navbar += '<div class="title">' + this.title + '</div></div>';
             }
-            navbar += '<div class="title">' + this.title + '</div></div>';
 
             // create dom
             if (this.prepare) {
@@ -11202,17 +11208,28 @@ return jQuery;
 
             var lastPage = $('body>.ui-page:eq(0)');
             var currentPage = $('body>.ui-page:eq(1)');
-            var lastNav = $('body>.ui-nav:eq(0)');
-            var currentNav = $('body>.ui-nav:eq(1)');
+            var lastNav;
+            var currentNav;
+
+            if (!this.hideNavBar) {
+                lastNav = $('body>.ui-nav:eq(0)');
+                currentNav = $('body>.ui-nav:eq(1)');
+            }
+
 
             lastPage.addClass(effectOut);
-            lastNav.find('.title, .ui-btn').addClass('page-fade-out');
             currentPage.addClass(effectIn);
-            currentNav.find('.title, .ui-btn').addClass('page-fade-in');
+
+            if (!this.hideNavBar) {
+                lastNav.find('.title, .ui-btn').addClass('page-fade-out');
+                currentNav.find('.title, .ui-btn').addClass('page-fade-in');
+            }
 
             _.delay(function() {
                 lastPage.empty().remove();
-                lastNav.empty().remove();
+                if (lastNav) {
+                    lastNav.empty().remove();
+                }
 
                 if (self.prepare) {
                     self.prepare();
