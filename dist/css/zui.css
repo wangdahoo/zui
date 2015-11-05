@@ -2780,12 +2780,12 @@ h3 {
   width: 100%;
   height: 100%;
   display: none;
-  padding: 55px 0 0 0;
+  padding: 40px 0 0 0;
   background-color: #efeff4; }
   .ui-page.page-from-center-to-left, .ui-page.page-from-center-to-right, .ui-page.page-from-right-to-center, .ui-page.page-from-left-to-center, .ui-page.page-fade-in, .ui-page.page-fade-out {
     display: block; }
   .ui-page.padding {
-    padding: 55px 15px 15px 15px; }
+    padding: 40px 15px 0 15px; }
   .ui-page.full-screen {
     padding: 0; }
 

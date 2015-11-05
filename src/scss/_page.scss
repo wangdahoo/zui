@@ -8,7 +8,7 @@
   width: 100%;
   height: 100%;
   display: none;
-  padding: $nav-default-height + $page-default-padding 0 0 0;
+  padding: $nav-default-height 0 0 0;
   background-color: $page-default-bg;
 
   &.page-from-center-to-left,
@@ -21,7 +21,7 @@
   }
 
   &.padding {
-    padding: $nav-default-height + $page-default-padding $page-default-padding $page-default-padding $page-default-padding;
+    padding: $nav-default-height $page-default-padding 0 $page-default-padding;
   }
 
   &.full-screen {

@@ -411,6 +411,7 @@
 
             // setup navbar
             var navbar = '';
+            var fullScreenClass = '';
             if (!this.hideNavBar) { // 是否渲染navbar
                 navbar = '<div class="ui-nav ' + (typeof this.theme == 'string' ? ('ui-nav-' + this.theme) : '') + '">';
                 var backButtonId;
@@ -419,14 +420,16 @@
                     navbar += '<button id="' + backButtonId +'" class="ui-btn"><i class="ui-icon ui-icon-angle-left"></i> </button>';
                 }
                 navbar += '<div class="title">' + this.title + '</div></div>';
+            } else {
+                fullScreenClass = ' full-screen';
             }
 
             // create dom
             if (this.prepare) {
-                body.append(navbar + '<div class="ui-page" id="' + self.pageId + '"></div>');
+                body.append(navbar + '<div class="ui-page' + fullScreenClass + '" id="' + self.pageId + '"></div>');
             } else {
                 var pageContent = typeof this.template == 'string' ? this.template : this.template(this.model);
-                body.append(navbar + '<div class="ui-page" id="' + self.pageId + '">' +
+                body.append(navbar + '<div class="ui-page' + fullScreenClass + '" id="' + self.pageId + '">' +
                     pageContent + '</div>');
             }
 
@@ -439,7 +442,7 @@
 
             // Transition
             if ($('body>.ui-page').size() < 2) { // Dummy Page
-                body.prepend('<div class="ui-page"></div>');
+                body.prepend('<div class="ui-page' + fullScreenClass + '"></div>');
             }
 
             if (!this.hideNavBar && $('body>.ui-nav').size() < 2) { // Dummy Nav
@@ -455,7 +458,6 @@
                 lastNav = $('body>.ui-nav:eq(0)');
                 currentNav = $('body>.ui-nav:eq(1)');
             }
-
 
             lastPage.addClass(effectOut);
             currentPage.addClass(effectIn);
