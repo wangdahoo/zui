@@ -11370,7 +11370,7 @@ return jQuery;
     }
 
     Toast.prototype.cleanup = function() {
-        $('body .ui-modal-loading, body .ui-modal-overlay')
+        $('body .ui-modal-toast, body .ui-modal-overlay')
             .empty().remove();
     };
 
@@ -11380,7 +11380,7 @@ return jQuery;
 
         var id = 'toast-' + uuid.v4().substr(0,8);
 
-        var content = '<div id="' + id + '" class="ui-modal ui-modal-loading">' +
+        var content = '<div id="' + id + '" class="ui-modal ui-modal-toast">' +
             '<div class="ui-modal-content">' +
             '<p>' + message + '</p>' +
             '</div></div>' +

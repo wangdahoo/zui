@@ -5046,6 +5046,39 @@ input[type="button"].ui-btn-block {
   transform: translateY(0);
   opacity: 1; }
 
+/* Toast */
+.ui-modal-toast .ui-modal-content {
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+  -ms-transform: scale(0.7);
+  transform: scale(0.7);
+  opacity: 0;
+  /* Toast Custom Style */
+  max-width: 80%;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6); }
+  .ui-modal-toast .ui-modal-content p {
+    font-size: 14px;
+    line-height: 14px; }
+
+.ui-modal-toast .ui-modal-content,
+.ui-modal-show.ui-modal-toast .ui-modal-content {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s; }
+
+.ui-modal-show.ui-modal-toast .ui-modal-content {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  opacity: 1; }
+
 /* Color */
 /* Basic */
 /* Component Page */
