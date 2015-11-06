@@ -366,7 +366,7 @@
                 this.ready = options.ready;
 
             /* hide navbar */
-            this.hideNavBar = !(options.hideNavBar == undefined);
+            this.hideNavBar = options.hideNavBar;
 
             this.init();
         },
