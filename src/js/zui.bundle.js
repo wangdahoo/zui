@@ -11708,7 +11708,7 @@ return jQuery;
         init: function(options) {
 
             /* todo: Not a good enough solution!!! */
-            ///* ios9 mobile safari bug with scale3d & translate3d */
+            /* ios9 mobile safari bug with scale3d & translate3d */
             if (SETTINGS.pageTransition == 'ios') {
                 if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
                     document.querySelector('meta[name=viewport]').setAttribute(

@@ -14,10 +14,10 @@
   .ui-nav-title, .title {
     position: absolute;
     top: 0;
-    left: 50px;
+    left: 15%;
     float: left;
-    min-width: 220px;
-    width: calc(100% - 100px);
+    // min-width: 224px;
+    width: 70%;
     height: $nav-default-height;
     text-align: center !important;
     font-size: $nav-default-title-font-size;
@@ -29,7 +29,7 @@
     color: $nav-default-color;
     background: none;
     border: none;
-    width: 48px;
+    width: 15%;
     height: $nav-default-height;
     line-height: $nav-default-height;
     font-size: 16px;

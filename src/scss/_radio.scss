@@ -1,0 +1,42 @@
+@import "_variable";
+
+.ui-radio {
+  padding: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.ui-radio .radio-content {
+  /* give some room to the right for the checkmark icon */
+  padding-right: 14 * 4;
+}
+
+.ui-radio .radio-icon {
+  /* checkmark icon will be hidden by default */
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  visibility: hidden;
+  padding: 14px;
+  height: 100%;
+  font-size: 16px;
+}
+
+.ui-radio input {
+  /* hide any radio button inputs elements (the ugly circles) */
+  position: absolute;
+  left: -9999px;
+
+  &:checked + .radio-content {
+    /* style the item content when its checked */
+    background: #f7f7f7;
+  }
+
+  &:checked + .radio-content .radio-icon {
+    /* show the checkmark icon when its checked */
+    visibility: visible;
+  }
+}
