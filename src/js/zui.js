@@ -949,14 +949,14 @@
 
             /* todo: Not a good enough solution!!! */
             /* ios9 mobile safari bug with scale3d & translate3d */
-            if (SETTINGS.pageTransition == 'ios') {
-                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-                    document.querySelector('meta[name=viewport]').setAttribute(
-                        'content',
-                        'initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no'
-                    );
-                }
-            }
+            //if (SETTINGS.pageTransition == 'ios') {
+            //    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+            //        document.querySelector('meta[name=viewport]').setAttribute(
+            //            'content',
+            //            'initial-scale=1.00001, minimum-scale=1.00001, maximum-scale=1.00001, user-scalable=no'
+            //        );
+            //    }
+            //}
 
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route
@@ -1131,6 +1131,7 @@
         Engine: function (options) {
             return new Engine(options);
         },
+
         Page: function(options) {
             return new Page(options);
         },

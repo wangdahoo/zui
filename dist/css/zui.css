@@ -7,6 +7,7 @@
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /* Color */
 /* Basic */
 /* Component Page */
@@ -15,6 +16,7 @@
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -2372,6 +2374,7 @@ h3 {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -2781,7 +2784,9 @@ h3 {
   height: 100%;
   display: none;
   padding: 40px 0 0 0;
-  background-color: #efeff4; }
+  background-color: #efeff4;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0); }
   .ui-page.page-from-center-to-left, .ui-page.page-from-center-to-right, .ui-page.page-from-right-to-center, .ui-page.page-from-left-to-center, .ui-page.page-fade-in, .ui-page.page-fade-out {
     display: block; }
   .ui-page.padding {
@@ -2917,6 +2922,7 @@ h3 {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -3680,6 +3686,7 @@ h3 {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 /**
  * 1. Set default font family to sans-serif.
@@ -4259,6 +4266,129 @@ h3 {
       .ui-btn.ui-btn-balanced.disabled, .ui-btn.ui-btn-balanced.disabled:hover, .ui-btn.ui-btn-balanced.disabled:focus, .ui-btn.ui-btn-balanced.disabled.focus, .ui-btn.ui-btn-balanced.disabled:active, .ui-btn.ui-btn-balanced.disabled.active, .ui-btn.ui-btn-balanced[disabled], .ui-btn.ui-btn-balanced[disabled]:hover, .ui-btn.ui-btn-balanced[disabled]:focus, .ui-btn.ui-btn-balanced[disabled].focus, .ui-btn.ui-btn-balanced[disabled]:active, .ui-btn.ui-btn-balanced[disabled].active, fieldset[disabled] .ui-btn.ui-btn-balanced, fieldset[disabled] .ui-btn.ui-btn-balanced:hover, fieldset[disabled] .ui-btn.ui-btn-balanced:focus, fieldset[disabled] .ui-btn.ui-btn-balanced.focus, fieldset[disabled] .ui-btn.ui-btn-balanced:active, fieldset[disabled] .ui-btn.ui-btn-balanced.active {
         background-color: #04be02;
         border-color: #03a502; }
+  .ui-btn.ui-btn-calm {
+    color: #fff;
+    background-color: #67d7f3;
+    border-color: #4fd1f1; }
+    .ui-btn.ui-btn-calm:focus, .ui-btn.ui-btn-calm.focus {
+      /* Remove outline & shadow */
+      outline: none;
+      outline-offset: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #38cbef;
+      border-color: #0e92b3; }
+    .ui-btn.ui-btn-calm:hover {
+      /* Remove Shadow */
+      text-decoration: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #38cbef;
+      border-color: #17c2ed; }
+    .ui-btn.ui-btn-calm:active, .ui-btn.ui-btn-calm.active {
+      color: #fff;
+      background-color: #38cbef;
+      border-color: #17c2ed; }
+      .ui-btn.ui-btn-calm:active:hover, .ui-btn.ui-btn-calm:active:focus, .ui-btn.ui-btn-calm:active.focus, .ui-btn.ui-btn-calm.active:hover, .ui-btn.ui-btn-calm.active:focus, .ui-btn.ui-btn-calm.active.focus {
+        /* Remove outline & shadow */
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        background-color: #17c2ed;
+        border-color: #0e92b3; }
+    .ui-btn.ui-btn-calm:active, .ui-btn.ui-btn-calm.active {
+      background-image: none; }
+    .ui-btn.ui-btn-calm.disabled, .ui-btn.ui-btn-calm[disabled], fieldset[disabled] .ui-btn.ui-btn-calm {
+      opacity: .65; }
+      .ui-btn.ui-btn-calm.disabled, .ui-btn.ui-btn-calm.disabled:hover, .ui-btn.ui-btn-calm.disabled:focus, .ui-btn.ui-btn-calm.disabled.focus, .ui-btn.ui-btn-calm.disabled:active, .ui-btn.ui-btn-calm.disabled.active, .ui-btn.ui-btn-calm[disabled], .ui-btn.ui-btn-calm[disabled]:hover, .ui-btn.ui-btn-calm[disabled]:focus, .ui-btn.ui-btn-calm[disabled].focus, .ui-btn.ui-btn-calm[disabled]:active, .ui-btn.ui-btn-calm[disabled].active, fieldset[disabled] .ui-btn.ui-btn-calm, fieldset[disabled] .ui-btn.ui-btn-calm:hover, fieldset[disabled] .ui-btn.ui-btn-calm:focus, fieldset[disabled] .ui-btn.ui-btn-calm.focus, fieldset[disabled] .ui-btn.ui-btn-calm:active, fieldset[disabled] .ui-btn.ui-btn-calm.active {
+        background-color: #67d7f3;
+        border-color: #4fd1f1; }
+  .ui-btn.ui-btn-energized {
+    color: #fff;
+    background-color: #ff8800;
+    border-color: #e67a00; }
+    .ui-btn.ui-btn-energized:focus, .ui-btn.ui-btn-energized.focus {
+      /* Remove outline & shadow */
+      outline: none;
+      outline-offset: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #cc6d00;
+      border-color: #663600; }
+    .ui-btn.ui-btn-energized:hover {
+      /* Remove Shadow */
+      text-decoration: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #cc6d00;
+      border-color: #a85a00; }
+    .ui-btn.ui-btn-energized:active, .ui-btn.ui-btn-energized.active {
+      color: #fff;
+      background-color: #cc6d00;
+      border-color: #a85a00; }
+      .ui-btn.ui-btn-energized:active:hover, .ui-btn.ui-btn-energized:active:focus, .ui-btn.ui-btn-energized:active.focus, .ui-btn.ui-btn-energized.active:hover, .ui-btn.ui-btn-energized.active:focus, .ui-btn.ui-btn-energized.active.focus {
+        /* Remove outline & shadow */
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        background-color: #a85a00;
+        border-color: #663600; }
+    .ui-btn.ui-btn-energized:active, .ui-btn.ui-btn-energized.active {
+      background-image: none; }
+    .ui-btn.ui-btn-energized.disabled, .ui-btn.ui-btn-energized[disabled], fieldset[disabled] .ui-btn.ui-btn-energized {
+      opacity: .65; }
+      .ui-btn.ui-btn-energized.disabled, .ui-btn.ui-btn-energized.disabled:hover, .ui-btn.ui-btn-energized.disabled:focus, .ui-btn.ui-btn-energized.disabled.focus, .ui-btn.ui-btn-energized.disabled:active, .ui-btn.ui-btn-energized.disabled.active, .ui-btn.ui-btn-energized[disabled], .ui-btn.ui-btn-energized[disabled]:hover, .ui-btn.ui-btn-energized[disabled]:focus, .ui-btn.ui-btn-energized[disabled].focus, .ui-btn.ui-btn-energized[disabled]:active, .ui-btn.ui-btn-energized[disabled].active, fieldset[disabled] .ui-btn.ui-btn-energized, fieldset[disabled] .ui-btn.ui-btn-energized:hover, fieldset[disabled] .ui-btn.ui-btn-energized:focus, fieldset[disabled] .ui-btn.ui-btn-energized.focus, fieldset[disabled] .ui-btn.ui-btn-energized:active, fieldset[disabled] .ui-btn.ui-btn-energized.active {
+        background-color: #ff8800;
+        border-color: #e67a00; }
+  .ui-btn.ui-btn-royal {
+    color: #fff;
+    background-color: #9b79e0;
+    border-color: #8c64db; }
+    .ui-btn.ui-btn-royal:focus, .ui-btn.ui-btn-royal.focus {
+      /* Remove outline & shadow */
+      outline: none;
+      outline-offset: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #7c50d6;
+      border-color: #4c249c; }
+    .ui-btn.ui-btn-royal:hover {
+      /* Remove Shadow */
+      text-decoration: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #fff;
+      background-color: #7c50d6;
+      border-color: #6633d0; }
+    .ui-btn.ui-btn-royal:active, .ui-btn.ui-btn-royal.active {
+      color: #fff;
+      background-color: #7c50d6;
+      border-color: #6633d0; }
+      .ui-btn.ui-btn-royal:active:hover, .ui-btn.ui-btn-royal:active:focus, .ui-btn.ui-btn-royal:active.focus, .ui-btn.ui-btn-royal.active:hover, .ui-btn.ui-btn-royal.active:focus, .ui-btn.ui-btn-royal.active.focus {
+        /* Remove outline & shadow */
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        background-color: #6633d0;
+        border-color: #4c249c; }
+    .ui-btn.ui-btn-royal:active, .ui-btn.ui-btn-royal.active {
+      background-image: none; }
+    .ui-btn.ui-btn-royal.disabled, .ui-btn.ui-btn-royal[disabled], fieldset[disabled] .ui-btn.ui-btn-royal {
+      opacity: .65; }
+      .ui-btn.ui-btn-royal.disabled, .ui-btn.ui-btn-royal.disabled:hover, .ui-btn.ui-btn-royal.disabled:focus, .ui-btn.ui-btn-royal.disabled.focus, .ui-btn.ui-btn-royal.disabled:active, .ui-btn.ui-btn-royal.disabled.active, .ui-btn.ui-btn-royal[disabled], .ui-btn.ui-btn-royal[disabled]:hover, .ui-btn.ui-btn-royal[disabled]:focus, .ui-btn.ui-btn-royal[disabled].focus, .ui-btn.ui-btn-royal[disabled]:active, .ui-btn.ui-btn-royal[disabled].active, fieldset[disabled] .ui-btn.ui-btn-royal, fieldset[disabled] .ui-btn.ui-btn-royal:hover, fieldset[disabled] .ui-btn.ui-btn-royal:focus, fieldset[disabled] .ui-btn.ui-btn-royal.focus, fieldset[disabled] .ui-btn.ui-btn-royal:active, fieldset[disabled] .ui-btn.ui-btn-royal.active {
+        background-color: #9b79e0;
+        border-color: #8c64db; }
 
 .ui-btn-block {
   display: block;
@@ -4285,7 +4415,41 @@ input[type="button"].ui-btn-block {
 .ui-btn-link {
   font-size: 16px;
   line-height: 16px;
-  background: none; }
+  background: none;
+  color: #309ded;
+  border: none; }
+  .ui-btn-link:focus, .ui-btn-link.focus {
+    /* Remove outline & shadow */
+    outline: none;
+    outline-offset: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #47a8ef;
+    background: none; }
+  .ui-btn-link:hover {
+    /* Remove Shadow */
+    text-decoration: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #47a8ef;
+    background: none; }
+  .ui-btn-link:active, .ui-btn-link.active {
+    color: #47a8ef;
+    background: none; }
+    .ui-btn-link:active:hover, .ui-btn-link:active:focus, .ui-btn-link:active.focus, .ui-btn-link.active:hover, .ui-btn-link.active:focus, .ui-btn-link.active.focus {
+      /* Remove outline & shadow */
+      outline: 0;
+      background-image: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #47a8ef;
+      background: none; }
+  .ui-btn-link:active, .ui-btn-link.active {
+    background-image: none; }
+  .ui-btn-link.disabled, .ui-btn-link[disabled], fieldset[disabled] .ui-btn-link {
+    opacity: .65; }
+    .ui-btn-link.disabled, .ui-btn-link.disabled:hover, .ui-btn-link.disabled:focus, .ui-btn-link.disabled.focus, .ui-btn-link.disabled:active, .ui-btn-link.disabled.active, .ui-btn-link[disabled], .ui-btn-link[disabled]:hover, .ui-btn-link[disabled]:focus, .ui-btn-link[disabled].focus, .ui-btn-link[disabled]:active, .ui-btn-link[disabled].active, fieldset[disabled] .ui-btn-link, fieldset[disabled] .ui-btn-link:hover, fieldset[disabled] .ui-btn-link:focus, fieldset[disabled] .ui-btn-link.focus, fieldset[disabled] .ui-btn-link:active, fieldset[disabled] .ui-btn-link.active {
+      background: none; }
 
 /* ========================================================================
    Component: Grid
@@ -4568,6 +4732,7 @@ input[type="button"].ui-btn-block {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 .ui-list {
   padding: 0;
   list-style: none;
@@ -4875,6 +5040,7 @@ input[type="button"].ui-btn-block {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 .ui-modal-perspective,
 .ui-modal-perspective body {
   height: 100%;
@@ -5086,6 +5252,7 @@ input[type="button"].ui-btn-block {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /* 细边框 */
 .thin-border {
   border-width: 1px;
@@ -5123,6 +5290,7 @@ input[type="button"].ui-btn-block {
 /* Component List */
 /* Thin Border */
 /* z-index */
+/* Form Widget */
 /*
   Container
 */

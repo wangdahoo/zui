@@ -27,6 +27,18 @@
     @include button-variant($btn-balanced-color, $btn-balanced-bg, $btn-balanced-border);
   }
 
+  &.ui-btn-calm {
+    @include button-variant($btn-calm-color, $btn-calm-bg, $btn-calm-border);
+  }
+
+  &.ui-btn-energized {
+    @include button-variant($btn-energized-color, $btn-energized-bg, $btn-energized-border);
+  }
+
+  &.ui-btn-royal {
+    @include button-variant($btn-royal-color, $btn-royal-bg, $btn-royal-border);
+  }
+
   /* 定制button高度 */
   // height: 50px;
 
@@ -65,5 +77,60 @@ input[type="button"] {
   font-size: $btn-font-size-base;
   line-height: $btn-font-size-base;
   background: none;
-}
+  color: darken($positive, 5%);
+  border: none;
 
+  &:focus,
+  &.focus {
+    /* Remove outline & shadow */
+    outline: none;
+    outline-offset: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: $positive;
+    background: none;
+  }
+  &:hover {
+    /* Remove Shadow */
+    text-decoration: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: $positive;
+    background: none;
+  }
+  &:active,
+  &.active {
+    color: $positive;
+    background: none;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      /* Remove outline & shadow */
+      outline: 0;
+      background-image: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: $positive;
+      background: none;
+    }
+  }
+  &:active,
+  &.active {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    opacity: .65;
+
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background: none;
+    }
+  }
+}

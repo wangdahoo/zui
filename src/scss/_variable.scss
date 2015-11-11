@@ -2,6 +2,10 @@
 $positive:                                      #47a8ef;
 $assertive:                                     #ec4949;
 $balanced:                                      #04be02;
+$calm:                                          #67d7f3;
+$energized:                                     #ff8800;
+$royal:                                         #9b79e0;
+
 $dark:                                          #231e1f;
 $light:                                         #fff;
 $grey:                                          #eee;
@@ -42,6 +46,17 @@ $btn-positive-border:                           darken($positive, 5%);
 $btn-balanced-color:                            #fff;
 $btn-balanced-bg:                               $balanced;
 $btn-balanced-border:                           darken($balanced, 5%);
+$btn-calm-color:                                #fff;
+$btn-calm-bg:                                   $calm;
+$btn-calm-border:                               darken($calm, 5%);
+$btn-energized-color:                           #fff;
+$btn-energized-bg:                              $energized;
+$btn-energized-border:                          darken($energized, 5%);
+$btn-royal-color:                               #fff;
+$btn-royal-bg:                                  $royal;
+$btn-royal-border:                              darken($royal, 5%);
+
+
 $btn-font-size-base:                            16px;
 // $btn-line-height-base:                       1.428571429; // 20/14
 $btn-line-height-base:                          36px;
@@ -68,6 +83,5 @@ $border-image:                                  url('data:image/png;base64,iVBOR
 $default-nav-z-index:                           3000;
 $default-modal-overlay-z-index:                 4000;
 $default-modal-z-index:                         5000;
-
 
 /* Form Widget */
