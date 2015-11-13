@@ -5083,7 +5083,7 @@ input[type="button"].ui-btn-block {
   -moz-transition: all 0.3s;
   transition: all 0.3s; }
 
-.ui-modal-show ~ .ui-modal-overlay {
+.ui-modal-show ~ .ui-modal-overlay, .ui-modal-show ~ .ui-overlay {
   opacity: 1;
   visibility: visible; }
 

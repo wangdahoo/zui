@@ -49,7 +49,7 @@
   transition: all 0.3s;
 }
 
-.ui-modal-show ~ .ui-modal-overlay {
+.ui-modal-show ~ .ui-modal-overlay, .ui-modal-show ~ .ui-overlay {
   opacity: 1;
   visibility: visible;
 }
@@ -238,4 +238,3 @@
   transform: scale(1);
   opacity: 1;
 }
-
