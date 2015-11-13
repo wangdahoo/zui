@@ -457,21 +457,18 @@
             if (!this.hideNavBar) {
                 lastNav = $('body>.ui-nav:eq(0)');
                 currentNav = $('body>.ui-nav:eq(1)');
+                lastNav.addClass(effectOut);
+                currentNav.addClass(effectIn);
             }
 
             lastPage.addClass(effectOut);
             currentPage.addClass(effectIn);
 
-            if (!this.hideNavBar) {
-                lastNav.find('.title, .ui-btn').addClass('page-fade-out');
-                currentNav.find('.title, .ui-btn').addClass('page-fade-in');
-            }
-
             _.delay(function() {
-                lastPage.empty().remove();
                 if (lastNav) {
                     lastNav.empty().remove();
                 }
+                lastPage.empty().remove();
 
                 if (self.prepare) {
                     self.prepare();
@@ -949,14 +946,14 @@
 
             /* todo: Not a good enough solution!!! */
             /* ios9 mobile safari bug with scale3d & translate3d */
-            //if (SETTINGS.pageTransition == 'ios') {
-            //    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-            //        document.querySelector('meta[name=viewport]').setAttribute(
-            //            'content',
-            //            'initial-scale=1.00001, minimum-scale=1.00001, maximum-scale=1.00001, user-scalable=no'
-            //        );
-            //    }
-            //}
+            if (SETTINGS.pageTransition == 'ios') {
+                if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+                    document.querySelector('meta[name=viewport]').setAttribute(
+                        'content',
+                        'initial-scale=1.00001, minimum-scale=1.00001, maximum-scale=1.00001, user-scalable=no'
+                    );
+                }
+            }
 
             this.routes = options.routes;                   // Route Map => { routeName: routeFunction, ... }
             this.defaultRoute = options.defaultRoute;       // Default Route

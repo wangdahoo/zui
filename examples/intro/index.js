@@ -4,7 +4,7 @@ $(function() {
      * Create an app engine */
 
     var app = zui.Engine({
-        pageTransition: 'ios',
+        pageTransition: 'default',
         pageTheme: 'light'
     });
 

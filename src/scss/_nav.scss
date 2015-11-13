@@ -12,41 +12,37 @@
   background-color: $nav-default-bg;
   box-shadow: 0 0 1px #999;
   .ui-nav-title, .title {
-    position: absolute;
-    top: 0;
-    left: 15%;
-    float: left;
-    // min-width: 224px;
-    width: 70%;
+    width: 100%;
     height: $nav-default-height;
-    text-align: center !important;
+    text-align: center;
     font-size: $nav-default-title-font-size;
     line-height: $nav-default-height;
     color: $nav-default-color;
   }
 
   .ui-btn {
+    position: absolute;
+    top: 0;
     color: $nav-default-color;
-    background: none;
+    background: $nav-default-color;
     border: none;
-    width: 15%;
+    width: 58px;
     height: $nav-default-height;
     line-height: $nav-default-height;
     font-size: 16px;
     font-weight: 300;
     padding: 0 15px;
-
     border-radius: 0px;
 
     @include button-variant($nav-default-color, $nav-default-bg, $nav-default-bg);
 
     &:nth-of-type(1) {
-      float: left;
+      left: 0;
       text-align: left;
     }
 
     &:nth-of-type(2) {
-      float: right;
+      right: 0;
       text-align: right;
     }
   }

@@ -19,8 +19,10 @@
     box-shadow: none;
 
     color: $color;
-    background-color: darken($background, 10%);
-    border-color: darken($border, 25%);
+    background-color: $background;
+    border-color: $border;
+    //background-color: darken($background, 10%);
+    //border-color: darken($border, 25%);
   }
   &:hover {
     /* Remove Shadow */
@@ -29,14 +31,18 @@
     box-shadow: none;
 
     color: $color;
-    background-color: darken($background, 10%);
-    border-color: darken($border, 12%);
+    background-color: $background;
+    border-color: $border;
+    //background-color: darken($background, 10%);
+    //border-color: darken($border, 25%);
   }
   &:active,
   &.active {
     color: $color;
-    background-color: darken($background, 10%);
-    border-color: darken($border, 12%);
+    background-color: $background;
+    border-color: $border;
+    //background-color: darken($background, 10%);
+    //border-color: darken($border, 25%);
 
     &:hover,
     &:focus,
@@ -48,8 +54,10 @@
       box-shadow: none;
 
       color: $color;
-      background-color: darken($background, 17%);
-      border-color: darken($border, 25%);
+      background-color: $background;
+      border-color: $border;
+      //background-color: darken($background, 10%);
+      //border-color: darken($border, 25%);
     }
   }
   &:active,
